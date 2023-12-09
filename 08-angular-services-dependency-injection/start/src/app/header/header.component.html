@@ -3,7 +3,7 @@
     <div class="header-nav">
         <a href="#" (click)="HomeClicked()">HOME</a>
         <a href="#" (click)="AdminClicked()">ADMIN</a>
-        <button (click)="_subscribeService.onSubscribed()" class="header-button">SUBSCRIBE</button>
+        <button (click)="onSubscribe()" class="header-button">SUBSCRIBE</button>
     </div>
 </div>
 <div [ngSwitch]="selectedTab">

@@ -10,6 +10,9 @@ import { SidebarComponent } from './header/home/sidebar/sidebar.component';
 import { UserListComponent } from './header/admin/user-list/user-list.component';
 import { FormsModule } from '@angular/forms';
 import { UserDetailComponent } from './header/admin/user-detail/user-detail.component';
+import { SubscribeService } from './Services/subscribe.service';
+import { userService } from './Services/user.service';
+import { LoggerService } from './Services/loggerService';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { UserDetailComponent } from './header/admin/user-detail/user-detail.comp
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [SubscribeService,userService,LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

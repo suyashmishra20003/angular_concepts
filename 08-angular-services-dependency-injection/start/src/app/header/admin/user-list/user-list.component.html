@@ -1,9 +1,9 @@
 <div class="admin-user-list">
-    <div class="admin-user-detail">
-        <div class="admin-user-name">John Smith</div>
-        <div class="admin-user-gender">Male</div>
-        <div class="admin-user-subtype">Yearly</div>
-        <div class="admin-user-active">Active</div>
+    <div class="admin-user-detail"  *ngFor="let user of userList">
+        <div class="admin-user-name"> {{user.name}} </div>
+        <div class="admin-user-gender"> {{user.gender}} </div>
+        <div class="admin-user-subtype"> {{user.status}} </div>
+        <div class="admin-user-active"> {{user.subType}} </div>
         <button class="admin-user-show-detail-button">+</button>
     </div>   
 </div>
