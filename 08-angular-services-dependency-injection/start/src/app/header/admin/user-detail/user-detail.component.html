@@ -1,13 +1,13 @@
 <div class="user-detail-container">
     <div>
-        <img class="user-detail-avatar-image" src="./assets/images/male-avatar.png">
+        <img class="user-detail-avatar-image" [src]=" './assets/images/'+ user.gender.toLowerCase()  + '-avatar.png' ">
     </div>
     <div class="user-detail-info">
         <h2>User Detail</h2>
-        <p><b>Name:</b> John Smith</p>
-        <p><b>Gender:</b> Male</p>
-        <p><b>Subscription Type:</b> Yearly</p>
-        <p><b>Status:</b> Active</p>
+        <p><b>Name:</b> {{user.name}}</p>
+        <p><b>Gender:</b> {{user.gender}}</p>
+        <p><b>Subscription Type:</b> {{user.subType}}</p>
+        <p><b>Status:</b> {{user.status}}</p>
     </div>    
 </div>
 

@@ -4,6 +4,6 @@
         <div class="admin-user-gender"> {{user.gender}} </div>
         <div class="admin-user-subtype"> {{user.status}} </div>
         <div class="admin-user-active"> {{user.subType}} </div>
-        <button class="admin-user-show-detail-button">+</button>
+        <button style="cursor: pointer;" (click)="addUser(user)" class="admin-user-show-detail-button">+</button>
     </div>   
 </div>

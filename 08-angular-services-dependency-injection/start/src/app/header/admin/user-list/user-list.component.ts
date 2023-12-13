@@ -14,4 +14,7 @@ export class UserListComponent {
     this.userList = _userService.getAllUsers()
   }
 
+  addUser(user){
+        this._userService.onUserClicked(user)
+  }
 }

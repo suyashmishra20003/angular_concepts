@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { SubscribeService } from 'src/app/Services/subscribe.service';
 
 @Component({
@@ -8,8 +8,10 @@ import { SubscribeService } from 'src/app/Services/subscribe.service';
 
 })
 export class HeroComponent {
-  constructor(private _subscribeService:SubscribeService){
-  }
+  // constructor(private _subscribeService:SubscribeService){
+  // }
+
+  _subscribeService:any =  inject(SubscribeService) //* Alternate approach to inject service
 
   onHeroSubscribeClicked(){
     this._subscribeService.onSubscribed('yearly')
