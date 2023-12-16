@@ -246,14 +246,72 @@ ngOnDestroy(): void {
 ```
 
 # Using Query String in Route
-Query Strings are the optional data that we cannpass to a component through a route. These query string are added at the end of the route after a `?`
+- Query Strings are the optional data that we can pass to a component through a route. These query string are added at the end of the route after a `?.
+- If the query parameter is missing in the URL, then it will not stop angular from navigating to the route
 ```
  localhost:4200/Books/Author?name=stefen-king
  localhost:4200/Products/product?id=12345&name=iphone
 
 ```
 
+### Using Observable to retieve Query Param 
 
+- Retrieving query parameters using an observable in Angular leverages the ActivatedRoute service's queryParamsMap property, which emits a stream of values containing the current state of the query parameters. 
+- This allows you to react dynamically to changes in the query string without needing to manually parse the URL.
+
+```
+ this.activeRoute.queryParamMap.subscribe((data)=>{
+      this.searchString =  data.get('search')
+})
+```
+#### Unsubscribing for memory management
+- Unsubscribing ensures proper resource management.
+- Remember to unsubscribe from the Observable when the component is destroyed to avoid memory leaks. You can achieve this using the ngOnDestroy lifecycle hook:
+```
+ngOnDestroy(): void {
+  this.courseId$.unsubscribe(); // Unsubscribe from the ID Observable
+}
+```
+
+## Using QueryParams as a link
+ Use the routerLink directive with the queryParams property to dynamically build the URL based on the specified route and parameters.
+
+```
+<button [routerLink]="'/Courses'" [queryParams]="{search : searchValue }" class="search-button">Search Courses</button>
+```
+we can add as many queryparams as we want in the queryParams object.
+
+
+
+Both route parameters and query parameters are dynamic pieces of information used in Angular routing, but they serve different purposes and behave differently:
+
+##  Difference between a route parameter and a queryparam
+
+#### Route parameters:
+
+- Definition: Defined within the route path itself, using a colon (:) followed by the parameter name.
+- Behavior:
+    - Part of the URL path and affect the navigation state.
+    - Can be required or optional.
+    - Accessed using the `ActivatedRoute` service's `params` or `paramMap` observable.
+- Benefits:
+    - Provide context for the current route and its content.
+    - Create meaningful URLs with clear navigation flow.
+     - Allow for dynamic content based on the captured parameter value.
+  
+#### Query parameters:
+
+- Definition: Appended to the URL after a question mark (?) and separated by ampersands (&).
+- Behavior:
+    - Don't affect the navigation state, only modify the current route's behavior.
+    - Always optional and cannot be required.
+   -  Accessed using the ActivatedRoute service's queryParams or queryParamsMap observable.
+- Benefits:
+    - Enhance functionality without changing the core route.
+    - Allow for user-driven modifications to the current view.
+    - Offer flexibility for filtering, sorting, and other dynamic adjustments.
+
+# Refer Router_Advanced for advanced topics
 
 # List of bard Questions
 
@@ -268,3 +326,8 @@ Query Strings are the optional data that we cannpass to a component through a ro
 - What does navigateByUrl() method in angular routing ?
 - What is ActivatedRoute in Angular routing
 - Using Observable to retieve Route Parameter 
+- what is difference between a route parameter and a queryparam in angular routing
+- Using Observable to retieve Query Param 
+- Using QueryParams as a link
+
+

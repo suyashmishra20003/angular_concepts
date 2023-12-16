@@ -7,8 +7,11 @@
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
       </p>
     </div>
-    <div class="home-page-banner-search">
-      <input type="text" class="search-input" placeholder="Search Courses" #searchVar>
-      <button class="search-button">Search Courses</button>
+    <div class="home-page-banner-search"> 
+      <input type="text" class="search-input" [(ngModel)]="searchValue" placeholder="Search Courses" #searchVar>
+      <!--  Using navigateByUrl method  and navigate method  -->
+      <button (click)="navigateToFilteredCourse()" class="search-button">Search Courses</button>
+      <!-- Alternate approach using queryParam -->
+      <!-- <button [routerLink]="'/Courses'" [queryParams]="{search : searchValue }" class="search-button">Search Courses</button> -->
     </div>
   </div>
