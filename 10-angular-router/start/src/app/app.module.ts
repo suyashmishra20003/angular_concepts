@@ -28,6 +28,7 @@ const routes: Routes = [
   {path:'About' , component : AboutComponent },
   {path:'Contact' , component : ContactComponent },
   {path:'Courses' , component : CoursesComponent },
+  {path:'Courses/Course/:id' , component : CourseDetailComponent }, //todo Route
   {path: '**' , component:NotFoundComponent} //*  Using wildcard if no path is matched. Fallback mechanism if no path is matched
 ]
 

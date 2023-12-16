@@ -22,12 +22,17 @@
             <div class="course-rating"><b>RATINGS:</b> {{ course.rating }}</div>
         </div>
         <div class="course-action-buttons">
-            <button class="btn">BUY NOW</button>
+            <button  class="btn">BUY NOW</button>
             <button class="btn">DETAILS</button>
         </div>
     </div>
     <div class="popular-course-bottom">
-        <button class="go-to-course-button">
+        <!-- <button routerLink="/Courses" class="go-to-course-button">  // Using routerLink
+            Go to Courses Page 
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </button> -->
+        Routing Programmatically
+        <button routerLink="/Courses" (click)="navigateToCourses()" class="go-to-course-button"> 
             Go to Courses Page 
             <i class="fa fa-arrow-right" aria-hidden="true"></i>
         </button>

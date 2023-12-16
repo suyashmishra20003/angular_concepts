@@ -2,22 +2,19 @@
     <div class="course-detail-container">
         <div class="course-details">
             <div class="course-banner">
-                <img src="./../../../assets/courses/course1.jpg" class="course-banner-image">
+                <img [src]="selectedCourse.image" class="course-banner-image">
             </div>
             <div class="course-title">
-                <h1>Complete Modern JavaScript Course</h1>
+                <h1>{{selectedCourse.title}}</h1>
             </div>
             <div class="course-info">
-                <div class="course-info-rating"><b>Course Rating: </b>4.5</div>
-                <div class="course-info-duration"><b>Duration: </b>18.5</div>
-                <div class="course-info-author"><b>Author: </b>Steve Smith</div>
+                <div class="course-info-rating"><b>Course Rating: </b>{{selectedCourse.rating}}</div>
+                <div class="course-info-duration"><b>Duration: </b>{{selectedCourse.duration}} </div>
+                <div class="course-info-author"><b>Author: </b>{{selectedCourse.author}} </div>
             </div>
             <div class="course-desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                    nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt 
-                    mollit anim id est laborum.
+                <p>
+                    {{selectedCourse.desc}}
                 </p>
             </div>
             <div class="course-fake-rewiews-list">
@@ -26,8 +23,9 @@
                 <div class="course-fake-rewiews">
                     <h3>Mark Stefan</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris
                         nisi ut aliquip ex ea commodo consequat.
                     </p>
                 </div>
@@ -35,18 +33,22 @@
                 <div class="course-fake-rewiews">
                     <h3>Josef Stalin</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                     </p>
                 </div>
 
                 <div class="course-fake-rewiews">
                     <h3>Ravi Kumar</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                        incididunt ut labore et m veniam, quis nostrud exercitation ullamco laboris 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                        incididunt ut labore et m veniam, quis nostrud exercitation ullamco laboris
                         nisi ut aliquip ex ea commodo consequat.
                     </p>
+                </div>
+                <div class="prev-nect-course">
+                    <button [routerLink]=" '/Courses/Course/' + (selectedCourse.id - 1) " class="prev-btn">Previous course</button>
+                    <button [routerLink]=" '/Courses/Course/' + (selectedCourse.id + 1) " class="next-btn">Next course</button>
                 </div>
             </div>
         </div>
@@ -59,7 +61,8 @@
                 <div class="course-selection-team">Team</div>
             </div>
             <div class="course-price-discount">
-                <span style="font-size: 24px; font-weight: bold; color: #222; margin:0px 5px;">$499</span>
+                <span
+                    style="font-size: 24px; font-weight: bold; color: #222; margin:0px 5px;">${{selectedCourse.price}}</span>
                 <span style="font-size: 18px; font-weight: bold; color: #444; margin:0px 5px;"><s>$3199</s></span>
                 <span style="font-size: 18px; color: #222; margin:0px 5px;">86% OFF</span>
                 <div class="offer-timer">
@@ -89,5 +92,5 @@
                 <button class="subscribe-course-button">Start subscription</button>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
