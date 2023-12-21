@@ -20,17 +20,8 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule } from '@angular/forms';
+import { RoutingModule } from './routing.module';
 
-const routes: Routes = [
-  {path:'',component:HomeComponent}, //* By Default what page should be loaded first
-  // {path:'', redirectTo:'Home', pathMatch:'full'},
-  {path:'Home',component:HomeComponent},
-  {path:'About' , component : AboutComponent },
-  {path:'Contact' , component : ContactComponent },
-  {path:'Courses' , component : CoursesComponent },
-  {path:'Courses/Course/:id' , component : CourseDetailComponent }, //todo Route
-  {path: '**' , component:NotFoundComponent} //*  Using wildcard if no path is matched. Fallback mechanism if no path is matched
-]
 
 
 @NgModule({
@@ -55,7 +46,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RoutingModule
   ],
   providers: [ServicesService, CourseService],
   bootstrap: [AppComponent]

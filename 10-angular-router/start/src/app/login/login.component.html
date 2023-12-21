@@ -7,12 +7,12 @@
         <h2>Please Login Here</h2>
         <div class="container">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" required>
+            <input [(ngModel)]="usernameValue" type="text" placeholder="Enter Username" required>
       
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" required>
+            <input [(ngModel)]="passwordValue" type="password" placeholder="Enter Password" required>
               
-            <button type="submit">Login</button>
+            <button (click)="onLoginClicked($event)" type="submit">Login</button>
             <label>
               <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>

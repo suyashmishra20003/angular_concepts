@@ -8,11 +8,11 @@
     </ul>
   </div>
   <div class="page-header-secondary-nav">
-    <a href="#">SEARCH</a>
-    <a href="#">POPULAR</a>
-    <a href="#">TESTIMONY</a>
-    <a href="#">SERVICES</a>
-    <a href="#">CONTACT</a>
+    <a fragment="search"  routerLink="Home"  >SEARCH</a>
+    <a fragment="courses" routerLink="Home"  >POPULAR</a>
+    <a fragment="testimony" routerLink="Home"  >TESTIMONY</a>
+    <a fragment="services" routerLink="Home"  >SERVICES</a>
+    <a fragment="contact"  routerLink="Home" >CONTACT</a>
   </div>
 </div>
 <div class="page-header">
@@ -32,8 +32,8 @@
         <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="Courses">COURSES</a>
       </div>
       <div class="page-header-login-logout">
-        <a href="#">LOGIN</a>
-        <a href="#">LOGOUT</a>
+        <a  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/Login">LOGIN</a>
+        <a routerLink="/Login" [queryParams]="{logout:true}" >LOGOUT</a>
       </div>
     </div>
 
