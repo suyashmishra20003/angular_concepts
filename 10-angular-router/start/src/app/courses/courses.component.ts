@@ -22,7 +22,9 @@ export class CoursesComponent implements OnInit,OnDestroy {
     this.querySubscriber =  this.activeRoute.queryParamMap.subscribe((data)=>{
       this.searchString =  data.get('search')
       if (this.searchString === undefined || this.searchString === '' || this.searchString === null) {
-        this.AllCourses = this.coursesService.courses;
+        this.coursesService.getAllcourses().subscribe((data)=>{
+          this.AllCourses = data
+        });
       } else {
         this.AllCourses = this.coursesService.courses.filter((course) => {
           return course.title.toLowerCase().includes(this.searchString.toLowerCase())

@@ -246,7 +246,7 @@ ngOnDestroy(): void {
 ```
 
 # Using Query String in Route
-- Query Strings are the optional data that we can pass to a component through a route. These query string are added at the end of the route after a `?.
+- Query Strings are the optional data that we can pass to a component through a route. These query string are added at the end of the route after a `?` .
 - If the query parameter is missing in the URL, then it will not stop angular from navigating to the route
 ```
  localhost:4200/Books/Author?name=stefen-king

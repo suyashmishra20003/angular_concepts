@@ -4,10 +4,14 @@ import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
 import { ContactComponent } from "../contact/contact.component";
 
+export interface iDeactivateComponent {
+    canExit: ()=> boolean | Observable<boolean> | Promise<boolean>
+}
+
 @Injectable({
     providedIn:'root'
 })
-export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<ContactComponent> { //! This is depricated and is used only on versions below 14 
+export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<iDeactivateComponent> { //! This is depricated and is used only on versions below 14 
     constructor( 
         private authService:AuthService,
         private router:Router
@@ -27,7 +31,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
        return  this.canActivate(childRoute,state)
     }
 
-    canDeactivate(component: ContactComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    canDeactivate(component: iDeactivateComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         return component.canExit()
     }
 
