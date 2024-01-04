@@ -1,32 +1,32 @@
-<section class="container">
+<section  [ngClass]="{ 'form-shadow':  resgisteredFormRef.touched}" class="container">
   <header>Registration Form</header>
 
-  <form class="form">
+  <form (ngSubmit)="OnFormSubmitted()" #resgisteredFormRef="ngForm"  class="form">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" />
+        <input type="text" placeholder="First Name" ngModel name="firstName" required />
       </div> 
 
       <div class="input-box">
-        <input type="text" placeholder="Last Name" />
+        <input type="text" placeholder="Last Name" ngModel name="lastName"  required />
       </div>
     </div>    
 
     <div class="input-box">
-      <input type="text" placeholder="Email" />
+      <input type="text" placeholder="Email" ngModel name="email"  email/>
     </div>
 
     <div class="column">
       <div class="input-box">
-        <input type="number" placeholder="Phone Number" />
+        <input type="number" placeholder="Phone Number" ngModel name="phoneNumnber" />
       </div>
       <div class="input-box">
-        <input type="date" placeholder="Date of Birth" />
+        <input type="date" placeholder="Date of Birth" ngModel name="dob" />
       </div>
     </div>
 
     <div class="input-box">
-      <input type="text" placeholder="username" />
+      <input type="text" placeholder="username" ngModel name="username" />
       <button class="btn-gen-username">
         Create a Username
       </button>
@@ -35,28 +35,21 @@
     <div class="gender-box">
       <h3>Gender</h3>
       <div class="gender-option">
-        <div class="gender">
-          <input type="radio" id="check-male" name="gender" checked />
-          <label for="check-male">male</label>
+        <div class="gender" *ngFor="let gender of genders" >
+          <input type="radio" [id]="gender.id" [value]="gender.value" ngModel name="gender" checked />
+          <label for="check-male">{{gender.label}}</label>
         </div>
-        <div class="gender">
-          <input type="radio" id="check-female" name="gender" />
-          <label for="check-female">Female</label>
-        </div>
-        <div class="gender">
-          <input type="radio" id="check-other" name="gender" />
-          <label for="check-other">prefer not to say</label>
-        </div>
+      
       </div>
     </div>
 
     <div class="input-box address">
       <label>Address</label>
-      <input type="text" placeholder="Street address" />
-      <input type="text" placeholder="Street address line 2" />
+      <input type="text" ngModel name="street1"  placeholder="Street address" />
+      <input type="text" ngModel name="street2"  placeholder="Street address line 2" />
       <div class="column">
         <div class="select-box">
-          <select name="country">
+          <select ngModel name="country">
             <option hidden>Country</option>
             <option>America</option>
             <option>Japan</option>
@@ -64,13 +57,13 @@
             <option>Nepal</option>
           </select>
         </div>
-        <input type="text" placeholder="City" />
+        <input type="text" ngModel name="city" placeholder="City" />
       </div>
       <div class="column">
-        <input type="text" placeholder="Region" />
-        <input type="number" placeholder="Postal code" />
+        <input type="text" ngModel name="resgion" placeholder="Region" />
+        <input type="number" ngModel name="postalCode" placeholder="Postal code" />
       </div>
     </div>
-    <input type="button" value="Submit" class="submit-btn"> 
+    <input [disabled]="resgisteredFormRef.valid ? false : true" type="submit" value="Submit" class="submit-btn"> 
   </form>
 </section>
