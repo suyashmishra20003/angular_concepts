@@ -157,6 +157,76 @@ in html
 
 ```
 # setValue() & patchValue() Methods 
+These methods are useful when you want to set or update form values based on certain conditions or events in your application.
+
+## The setValue() method
+The setValue() method is used to update a FormControl, FormGroup or FormArray value.
+
+To the setValue() method, we pass an object to update the value of a FormControl, FormGroup or FormArray. The structure of that object must match the structure of FormControl, FormGroup or FormArray which we are trying to update.
+
+
+```
+In ts
+
+
+ this.form.setValue({
+      dob: this.form.value.dob,
+      email: this.form.value.email,
+      firstName: this.form.value.firstName,
+      gender: 'male',
+      lastName: this.form.value.lastName,
+      phoneNumber: this.form.value.phoneNumber,
+      userName: username,
+      addressDetails: {
+        city: this.form.value.addressDetails.city,
+        country: this.form.value.addressDetails.country,
+        postalCode: this.form.value.addressDetails.postalCode,
+        region: this.form.value.addressDetails.region,
+        street1: this.form.value.addressDetails.street1,
+        street2: this.form.value.addressDetails.street2,
+      },
+    
+    })
+
+```
+
+-  On using setValue we have to pass an object in the structure of the form value
+- This process is very cumbersome, because to set a single value we have to write the entire form control value object. 
+-  that is why we use patchvalue method
+
+
+## The patchValue() method
+The patchValue() method is used to update only a subset of the element of FormGroup or FormArray vaalue.
+It will only update the matching objects and ignores the rest
+```
+ //* Using patchValue to update single value
+    this.form.form.patchValue({
+      userName:username,
+      adressDetails: {
+        country:'Japan'
+      }
+    })
+    
+```
+### Key Differences:
+- `setValue`: It requires an object with values for all form controls in the form group. If you miss any form control, it will throw an error.
+- `patchValue`: It allows you to update only a subset of form controls. If you omit any form control, it won't throw an error.
+
+# Resetting Form 
+To reset a template-driven form, you can use the ngForm directive along with the #form="ngForm" template reference variable. Here's a step-by-step explanation with an example:
+```
+in ts
+
+  resetForm(form: any): void {
+    form.resetForm(); // This resets the form
+  }
+
+  // Alternate approach
+  resetForm(form: any): void {
+    form.reset(); // This resets the form
+  }
+
+```
 
 
 #  Questions for AI
@@ -166,11 +236,5 @@ in html
 - What are touched and dirty property in angular template driven form NgForm object
 - what is two way data binding and how to use it in angular form ? explain with example
 - what are setValue() & patchValue() methods in template driven forms? How to use them to update values in the form? explain with exapmle
-
-
-
-
-
-
-
-
+- what are setvalue and patchValues methods in angular forms ? explain with exammple
+- How to reset template driven forms in angular ? Explain with example

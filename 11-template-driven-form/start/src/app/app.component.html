@@ -4,12 +4,12 @@
   <form (ngSubmit)="OnFormSubmitted()" #resgisteredFormRef="ngForm"  class="form">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" [(ngModel)]="firstNameValue"  ngModel name="firstName" required />
+        <input type="text" placeholder="First Name"   ngModel name="firstName" required />
         <span *ngIf="firstNameValue" >You entered {{firstNameValue}}</span>
       </div> 
      
       <div class="input-box">
-        <input type="text" [(ngModel)]="lastNameValue"  placeholder="Last Name" ngModel name="lastName"  required />
+        <input type="text"  placeholder="Last Name" ngModel name="lastName"  required />
         <span  *ngIf="lastNameValue">You entered {{lastNameValue}}</span>
 
       </div>
@@ -21,7 +21,7 @@
       <small>last name is  a required field</small>
     </div>
     <div class="input-box">
-      <input type="text"  [(ngModel)]="emailValue"  placeholder="Email" ngModel name="email"  required email/>
+      <input type="text"   placeholder="Email" ngModel name="email"  required email/>
       <span  *ngIf="emailValue">You entered {{emailValue}}</span>
 
     </div>
@@ -30,10 +30,10 @@
     </div>
     <div class="column">
       <div class="input-box">
-        <input type="number" placeholder="Phone Number" ngModel name="phoneNumnber" />
+        <input type="number" placeholder="Phone Number" ngModel name="phoneNumber" />
       </div>
       <div class="input-box">
-        <input type="date" placeholder="Date of Birth" [(ngModel)]="dob" ngModel name="dob" />
+        <input type="date" placeholder="Date of Birth"  ngModel name="dob" />
       </div>
     </div>
 
@@ -46,16 +46,17 @@
 
     <div class="input-box">
       <button 
-            [disabled]=" 
-                resgisteredFormRef.controls['firstName'].invalid ||
-                resgisteredFormRef.controls['lastName'].invalid ||
-                resgisteredFormRef.controls['dob'].invalid 
-            " (click)="generateUsername()"
+            type="button"
+           (click)="generateUsername()"
             class="btn-gen-username">
         Create a Username
       </button>
     </div>
-
+    <!-- [disabled]=" 
+    resgisteredFormRef.controls['firstName'].invalid ||
+    resgisteredFormRef.controls['lastName'].invalid ||
+    resgisteredFormRef.controls['dob'].invalid 
+"  -->
     <div class="gender-box">
       <h3>Gender</h3>
       <div class="gender-option">
@@ -92,10 +93,17 @@
     *ngIf="
           resgisteredFormRef.controls['addressDetails'].invalid 
           &&
-          resgisteredFormRef.controls['addressDetails'].invalid " >
+          resgisteredFormRef.controls['addressDetails'].invalid
+          &&
+          resgisteredFormRef.controls['addressDetails'].dirty
+          " >
       
       *Some of the  address fields does not have a valid value
     </small>
+    <div class="column">
+        <input type="checkbox" [(ngModel)]="isAgreed" name="agreement" ngModel >
+        <label for="agreement"> I agree to terms and conditions</label>
+    </div>
     <input [disabled]="resgisteredFormRef.valid ? false : true" type="submit" value="Submit" class="submit-btn"> 
   </form>
 </section>
