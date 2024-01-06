@@ -4,30 +4,54 @@
   <form (ngSubmit)="OnFormSubmitted()" #resgisteredFormRef="ngForm"  class="form">
     <div class="column">
       <div class="input-box">
-        <input type="text" placeholder="First Name" ngModel name="firstName" required />
+        <input type="text" placeholder="First Name" [(ngModel)]="firstNameValue"  ngModel name="firstName" required />
+        <span *ngIf="firstNameValue" >You entered {{firstNameValue}}</span>
       </div> 
-
+     
       <div class="input-box">
-        <input type="text" placeholder="Last Name" ngModel name="lastName"  required />
+        <input type="text" [(ngModel)]="lastNameValue"  placeholder="Last Name" ngModel name="lastName"  required />
+        <span  *ngIf="lastNameValue">You entered {{lastNameValue}}</span>
+
       </div>
     </div>    
-
-    <div class="input-box">
-      <input type="text" placeholder="Email" ngModel name="email"  email/>
+    <div *ngIf="resgisteredFormRef.controls['firstName'].invalid && resgisteredFormRef.controls['firstName'].dirty" >
+      <small>first name is  a required field</small>
     </div>
+    <div *ngIf="resgisteredFormRef.controls['lastName'].invalid && resgisteredFormRef.controls['lastName'].dirty" >
+      <small>last name is  a required field</small>
+    </div>
+    <div class="input-box">
+      <input type="text"  [(ngModel)]="emailValue"  placeholder="Email" ngModel name="email"  required email/>
+      <span  *ngIf="emailValue">You entered {{emailValue}}</span>
 
+    </div>
+    <div *ngIf="resgisteredFormRef.controls['email'].invalid && resgisteredFormRef.controls['email'].dirty" >
+      <small>email is  a required field</small>
+    </div>
     <div class="column">
       <div class="input-box">
         <input type="number" placeholder="Phone Number" ngModel name="phoneNumnber" />
       </div>
       <div class="input-box">
-        <input type="date" placeholder="Date of Birth" ngModel name="dob" />
+        <input type="date" placeholder="Date of Birth" [(ngModel)]="dob" ngModel name="dob" />
       </div>
     </div>
 
     <div class="input-box">
-      <input type="text" placeholder="username" ngModel name="username" />
-      <button class="btn-gen-username">
+      <input type="text"  placeholder="Username" ngModel name="userName"  required />
+    </div>
+    <div *ngIf="resgisteredFormRef.controls['userName'].invalid && resgisteredFormRef.controls['userName'].dirty" >
+      <small>Username is  a required field</small>
+    </div>
+
+    <div class="input-box">
+      <button 
+            [disabled]=" 
+                resgisteredFormRef.controls['firstName'].invalid ||
+                resgisteredFormRef.controls['lastName'].invalid ||
+                resgisteredFormRef.controls['dob'].invalid 
+            " (click)="generateUsername()"
+            class="btn-gen-username">
         Create a Username
       </button>
     </div>
@@ -43,13 +67,13 @@
       </div>
     </div>
 
-    <div class="input-box address">
+    <div class="input-box address" ngModelGroup="addressDetails" >
       <label>Address</label>
-      <input type="text" ngModel name="street1"  placeholder="Street address" />
+      <input type="text" ngModel name="street1"  placeholder="Street address" required />
       <input type="text" ngModel name="street2"  placeholder="Street address line 2" />
       <div class="column">
         <div class="select-box">
-          <select ngModel name="country">
+          <select ngModel name="country" required>
             <option hidden>Country</option>
             <option>America</option>
             <option>Japan</option>
@@ -57,13 +81,21 @@
             <option>Nepal</option>
           </select>
         </div>
-        <input type="text" ngModel name="city" placeholder="City" />
+        <input type="text" ngModel name="city" placeholder="City" required />
       </div>
       <div class="column">
-        <input type="text" ngModel name="resgion" placeholder="Region" />
-        <input type="number" ngModel name="postalCode" placeholder="Postal code" />
+        <input type="text" ngModel name="region" placeholder="Region" />
+        <input type="number" ngModel name="postalCode" required placeholder="Postal code" />
       </div>
     </div>
+    <small 
+    *ngIf="
+          resgisteredFormRef.controls['addressDetails'].invalid 
+          &&
+          resgisteredFormRef.controls['addressDetails'].invalid " >
+      
+      *Some of the  address fields does not have a valid value
+    </small>
     <input [disabled]="resgisteredFormRef.valid ? false : true" type="submit" value="Submit" class="submit-btn"> 
   </form>
 </section>

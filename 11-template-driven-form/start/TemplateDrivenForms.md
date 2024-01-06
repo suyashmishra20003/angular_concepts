@@ -1,7 +1,7 @@
 # Need of Angular forms
 - When a normal html form is submitted, it reloads the page by making an HTTP request to the server. Since we create a single page app using angular, we can say that it will restart the complete Angular app.
 - To avoid this, we need Angular's help to stop this default behavior. This can be achieved using `Template driven form or Reactive forms` in Angular. Using any one of these two approaches makes working with forms easier.
-
+- Any button situated inside the HTML form tag is by Default a submit button.
 ## Advantages & Disadvantages Template driven form & Reactive forms 
 Template-driven forms and reactive forms are two approaches to handling forms in Angular, and each has its own set of advantages and disadvantages.
 
@@ -110,11 +110,64 @@ Checks the numeric value of a control against specified minimum and maximum valu
 <input name="age" ngModel type="number" min="18" max="99">
 ``` 
 
+# Two way data binding in angular forms
+Two-way data binding in Angular is a mechanism that combines property binding and event binding in a single notation using `[(ngModel)]`. It allows you to establish a synchronization between the model (component property) and the view (HTML input element, for example) in both directions. This means that changes in the model update the view, and changes in the view update the model.
+
+```
+in html 
+
+<input type="text" id="username" [(ngModel)]="username" name="username">
+
+in ts 
+export class AppComponent {
+  user = '';
+}
+```
+
+# What is From group ?
+- A `FreomGroup` is a collection of `FormControl`. it can also contain other FormGroup.
+- To create a form group, we can use `ngModelGroup` directive
+- We create a FromGroup to organize and manage related Form Controls together. We can track the value and validity state of form control instances present inside a FormGroup
+
+##### Example
+
+```
+in html
+    <div class="input-box address" ngModelGroup="addressDetails" > // FormGroup
+      <label>Address</label>
+      <input type="text" ngModel name="street1"  placeholder="Street address" required />
+      <div class="column">
+        <input type="text" ngModel name="city" placeholder="City" required />
+      </div>
+      <div class="column">
+        <input type="text" ngModel name="region" placeholder="Region" />
+        <input type="number" ngModel name="postalCode" required placeholder="Postal code" />
+      </div>
+    </div>
+
+     <small 
+    *ngIf="
+          resgisteredFormRef.controls['addressDetails'].invalid 
+          &&
+          resgisteredFormRef.controls['addressDetails'].dirty " >
+      
+      *Some of the  address fields does not have a valid value
+    </small>
+
+
+```
+# setValue() & patchValue() Methods 
+
+
 #  Questions for AI
 - state advantages and disadvantages of template driven and reactive forms in angular
 - implement a simple template driven form in angular
 - Do we need name attribute to access controls from template driven forms
 - What are touched and dirty property in angular template driven form NgForm object
+- what is two way data binding and how to use it in angular form ? explain with example
+- what are setValue() & patchValue() methods in template driven forms? How to use them to update values in the form? explain with exapmle
+
+
 
 
 
