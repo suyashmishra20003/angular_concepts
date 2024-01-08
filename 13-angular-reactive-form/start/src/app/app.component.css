@@ -201,3 +201,8 @@ input.ng-pending{
 .container.PENDING{
   border: orange 3px solid;
 }
+
+.submit-btn-disabled{
+  opacity: 0.7;
+  cursor: not-allowed !important;
+}
