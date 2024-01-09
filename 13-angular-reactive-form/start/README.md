@@ -179,3 +179,27 @@ The difference between FormGroup and FormArray is in the way they create the col
 - FromGroup store the form controls in the form of key value pair in an object.
 - FormArray stores the form control as an element of an array.
   
+```
+  <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()" >
+      <div formArrayName="skills" class="input-box skills">
+          <h4>Add Skills</h4>
+          <div *ngFor="let control of reactiveForm.get('skills')['controls'] let i = index" class="column">
+            <input [formControlName]="i" type="text" placeholder="Add Skill...">
+            <button type="button" class="btn-add-delete">Delete</button>
+          </div> 
+      </div>
+      <button type="button" class="btn-add-delete">Add Skills</button>
+  </form>
+
+  in ts 
+  this.reactiveForm = new FormGroup({
+        skills: new FormArray([
+          new FormControl(null,Validators.required),
+          new FormControl(null,Validators.required),
+          new FormControl(null,Validators.required),
+          new FormControl(null,Validators.required)
+        ])
+  })
+```
+
+### Adding Form Controls Dynamically
