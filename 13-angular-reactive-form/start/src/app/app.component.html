@@ -3,8 +3,6 @@
 
   <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()">
     <div class="column">
-      <div class="input-box">
-        <input type="text" formControlName="firstName" placeholder="First Name" />
         <!-- <small 
             *ngIf="reactiveForm.controls['firstName'].invalid 
                     && reactiveForm.controls['firstName'].dirty"            
@@ -12,11 +10,19 @@
                 *First name is a required field
         </small> -->
         <!-- *Alternate approach -->
+      <div class="input-box">
+        <input type="text" formControlName="firstName" placeholder="First Name" />
         <small 
               *ngIf="
-                reactiveForm.get('firstName').invalid &&
+                reactiveForm.get('firstName').errors?.['required'] &&
                 reactiveForm.get('firstName').touched"
               >*First name is a required field</small>
+        <small
+          *ngIf="reactiveForm.get('firstName').errors?.['noSpaceAllowed'] && 
+          reactiveForm.get('firstName').touched" 
+        >
+          *No Space allowed in first name
+        </small>
       </div>
       <div class="input-box">
         <input type="text" formControlName="lastName"  placeholder="Last Name" />
@@ -102,21 +108,21 @@
     <!--HTML for Skills Form Array -->
     <div formArrayName="skills" class="input-box skills">
       <h4>Add Skills</h4>
-      <div *ngFor="let control of reactiveForm.get('skills')['controls'] let i = index" class="column">
+      <div *ngFor="let control of reactiveForm.get('skills')['controls'] ; let i = index" class="column">
         <input [formControlName]="i" type="text" placeholder="Add Skill...">
-        <button type="button" class="btn-add-delete">Delete</button>
+        <button type="button" (click)="deleteSkillHandler(i)" class="btn-add-delete">Delete</button>
       </div> 
     </div>
     <button type="button" (click)="addSkillsHandler()" class="btn-add-delete">Add Skills</button>
 
     <!--HTML for Experience Form Array -->
-    <div class="input-box">
-      <div class="experience">
+    <div formArrayName="experience" class="input-box">
+      <div [formGroupName]="i"  *ngFor="let group of reactiveForm.get('experience')['controls']; let i = index" class="experience">
         <label>Experience</label>
-        <input type="text" placeholder="Company Name" />
+        <input formControlName="companyName" type="text" placeholder="Company Name" />
         <div class="column">
           <div class="select-box">
-            <select>
+            <select  formControlName="positionName" >
               <option hidden>Position</option>
               <option>Junior Developer</option>
               <option>Software Developer</option>
@@ -124,19 +130,19 @@
               <option>Team Lead</option>
             </select>
           </div>
-          <input type="number" placeholder="Experience" />
+          <input formControlName="totalExp" type="number" placeholder="Experience" />
         </div>
         <div class="column">
-          <input type="date" placeholder="Start Date" />
-          <input type="date" placeholder="End Date" />
+          <input  formControlName="start"  type="date" placeholder="Start Date" />
+          <input  formControlName="end"  type="date" placeholder="End Date" />
         </div>
-        <button type="button" class="btn-add-delete">Delete Experience</button>
+        <button type="button" (click)="deleteExperienceHandler(i)" class="btn-add-delete">Delete Experience</button>
       </div>
     </div>
-    <button type="button" class="btn-add-delete">Add Experience</button>
+    <button type="button" (click)="addExperienceHandler()" class="btn-add-delete">Add Experience</button>
 
-    <button type="submit" [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid" class="submit-btn"> Submit </button>
-    <!--  -->
+    <button type="submit"    class="submit-btn"> Submit </button>
+    <!-- [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid"  -->
   </form>
 </section>
 
