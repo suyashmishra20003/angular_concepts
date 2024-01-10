@@ -2,16 +2,14 @@
 A fragment in a route is a link which jumps to a section or a content in the HTML page, which contains the ID mentioned in the fragment. A fragment after a `#` sign.
 
 
-```
-    <a fragment="search"  routerLink="Home"  >SEARCH</a>
-
-
+```html
+<a fragment="search"  routerLink="Home"  >SEARCH</a>
 URL: http://localhost:4200/Home#Services
 ```
 ### Using Fragments in Links
 In your components or templates, you can use the `routerLink` & `fragmant` directive to create links with fragments.
 
-```
+```html
 <a [routerLink]="['/detail', 1]" fragment="section1">Go to Detail with Fragment</a>
 <a [routerLink]="['/detail', 2]" fragment="section2">Go to Detail with Another Fragment</a>
 ```
@@ -20,7 +18,7 @@ In your components or templates, you can use the `routerLink` & `fragmant` direc
 
 In the component that handles the detail view, you can use the ActivatedRoute service to access the fragment.
 
-```
+```ts
 export class DetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
@@ -39,7 +37,7 @@ In Angular, nested routes refer to the practice of defining child routes within 
 
 
 
-```
+```ts
  const routes: Routes = [
   { path: 'products', component: ProductListComponent },
   {
@@ -88,7 +86,7 @@ The Angular CaActivate route guard decides if a route can be activated or not. W
 The common use case where we can use a CanActivate route guard is when we want to protect a route from an unauthorized user. For example, let's say there are some routes which can only be accessed by a loggged in user, we can use CanActivate guard.
 
 
-```
+```ts
 In Module.ts
 
 {path:'Checkout', component:CheckoutComponent, canActivate:[AuthGuardService]},
@@ -107,7 +105,7 @@ export class AuthGuardService implements CanActivate{ //! This is depricated and
 ```
 
 #### Angular 15 or above
-```
+```ts
 // authFunc.guard.ts
 
 
@@ -141,7 +139,7 @@ Guard Implementation:
 - Prevent accidental loss of content and ensure collaboration continuity.
 
 ##### Angular 14 or less
-```
+```ts
 // auth-guard.service.ts
 export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<ContactComponent> { //! This is depricated and is used only on versions below 14 
 
@@ -158,7 +156,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
 
 ```
 ##### Angular 15 or above
-```
+```ts
 // authFunc.guard.ts
 
 export const CanDeActivateFn = (comp:any) => {
