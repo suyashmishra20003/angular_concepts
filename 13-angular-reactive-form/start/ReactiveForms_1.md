@@ -1,21 +1,28 @@
 # Why not use normal HTML Form
+
 When a Normal HTML form is submitted, it reloads the apge by making an HTTP request to the server.Since we create a single page app using Angular, we can say that it will restart the complete Angular application.
 
 To avoid this, we eed Angular help to stop this default behavior. This can be achieved using template driven form or reactive form in Angular. Using any one of these two approaches makes working with forms easier.
 
-# Why Reactive form 
+# Why Reactive form
+
 #### Pros
+
 - Structure of the form is defined in Typescript class.
-- Creating dynamic controls is easier 
+- Creating dynamic controls is easier
 - Easy to unit test
+
 #### Cons
+
 - Most of the things are done by writing code.
 
 # Required Module
+
 To workwith forms in Angular, we must import `ReactiveFormsModule` from `@angular/forms` in the app Module file
 
 ### Example
-```
+
+```html
 <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()" >
    <div class="column">
       <div class="input-box">
@@ -31,8 +38,9 @@ To workwith forms in Angular, we must import `ReactiveFormsModule` from `@angula
     <button type="submit" [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid" class="submit-btn"> Submit </button>
 </form>
 
-in ts
+```
 
+```ts
 ngOnInit(): void {
   this.reactiveForm = new FormGroup({
       firstName:new FormControl(null),
@@ -45,12 +53,13 @@ ngOnInit(): void {
 OnSubmitForm(){
   console.log(this.reactiveForm);  
 }
-
 ```
 
 # Form Validation in Reactive Form
+
  Reactive forms in Angular provide a robust mechanism for implementing validation rules and displaying error messages based on the state of form controls.
- ```
+
+ ```html
  <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()" >
    <div class="column">
       <div class="input-box">
@@ -66,7 +75,10 @@ OnSubmitForm(){
     <button type="submit" [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid" class="submit-btn"> Submit </button>
 </form>
 
-ngOnInit(): void {
+ ```
+
+```ts
+ ngOnInit(): void {
   this.reactiveForm = new FormGroup({
       firstName:new FormControl(null, Validators.required),
       lastName:new FormControl(null,Validators.required),
@@ -78,16 +90,16 @@ ngOnInit(): void {
 OnSubmitForm(){
   console.log(this.reactiveForm);  
 }
- ```
+```
 
- For more information on types of inbuilt 
+ For more information on types of inbuilt
  [Validators](https://angular.io/api/forms/Validators) class
- 
 
- # Showing Validation Error Messages
+# Showing Validation Error Messages
+
 In Angular reactive forms, you can show validation error messages to users when they interact with the form. Below is an example of how to implement and display validation error messages in Angular reactive forms.
 
- ```
+ ```html
        <div class="input-box">
         <input type="text" formControlName="firstName" placeholder="First Name" />
         <!-- <small 
@@ -105,11 +117,11 @@ In Angular reactive forms, you can show validation error messages to users when 
       </div>
  ```
 
- # Grouping of Form Controls
+# Grouping of Form Controls
 
 In Angular reactive forms, you can group form controls together using the FormGroup class. This allows you to organize related controls and validate them as a group. Below is an example of how to group form controls in a reactive form.
 
-```
+```html
  <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()" >
    <div class="column">
       <div class="input-box">
@@ -145,7 +157,9 @@ In Angular reactive forms, you can group form controls together using the FormGr
     <button type="submit" [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid" class="submit-btn"> Submit </button>
 </form>
 
-in TS
+```
+
+```ts
 ngOnInit(): void {
   this.reactiveForm = new FormGroup({
       firstName:new FormControl(null, Validators.required),
@@ -164,22 +178,26 @@ ngOnInit(): void {
 OnSubmitForm(){
   console.log(this.reactiveForm);  
 }
-
 ```
 
+
 # Creating and using Form Array
+
 A FormArray is a way to manage a collection of form controls in Angular. The form control can be formGroup, FormControl or another FormArray.
 
 ### What is FormArray ?
+
 In Angular, we can group form controls in two ways.
+
 - Using `FromGroup`
 - Using `FromArray`
 
 The difference between FormGroup and FormArray is in the way they create the collection.
+
 - FromGroup store the form controls in the form of key value pair in an object.
 - FormArray stores the form control as an element of an array.
   
-```
+```html
   <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()" >
       <div formArrayName="skills" class="input-box skills">
           <h4>Add Skills</h4>
@@ -191,6 +209,9 @@ The difference between FormGroup and FormArray is in the way they create the col
       <button type="button" class="btn-add-delete">Add Skills</button>
   </form>
 
+```
+
+```ts
   in ts 
   this.reactiveForm = new FormGroup({
         skills: new FormArray([
@@ -204,8 +225,7 @@ The difference between FormGroup and FormArray is in the way they create the col
 
 ### Adding & Deleting Form Controls Dynamically
 
-```
-in html
+```html
 
  <div formArrayName="skills" class="input-box skills">
       <h4>Add Skills</h4>
@@ -217,8 +237,7 @@ in html
     <button type="button" (click)="addSkillsHandler()" class="btn-add-delete">Add Skills</button>
 ```
 
-```
-in ts 
+```ts 
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
@@ -246,8 +265,7 @@ in ts
 
 ### Adding & Deleting Form FormGroups Dynamically
 
-```
-    In HTML
+```html
 
     <div formArrayName="experience" class="input-box">
       <div [formGroupName]="i"  *ngFor="let group of reactiveForm.get('experience')['controls']; let i = index" class="experience">
@@ -276,8 +294,7 @@ in ts
 
 ```
 
-```
-in TS
+```ts
 
   ngOnInit(): void {
    this.reactiveForm = new FormGroup({
@@ -313,9 +330,11 @@ in TS
 ```
 
 # Creating a Synchronous Custom Validator
-Custom validators in Angular 16 provide a way to define your own validation logic for form controls, extending beyond the built-in validators. 
+
+Custom validators in Angular 16 provide a way to define your own validation logic for form controls, extending beyond the built-in validators.
 
 ### Key Points
+
 - Custom validators can be synchronous or asynchronous (returning Observables or Promises).
 - Use them for complex validation scenarios not covered by built-in validators.
 - Combine multiple custom validators for advanced validation logic.
@@ -323,13 +342,15 @@ Custom validators in Angular 16 provide a way to define your own validation logi
 - Consider creating a reusable validator service for sharing validation logic across components.
 
 ### Benefits of Custom Validators
+
 - Flexibility: Implement any validation logic you need.
 - Reusability: Create validators that can be used across multiple form controls and components.
 - Enhanced user experience: Provide clear and specific error messages to guide users in correcting invalid input.
 - Maintainability: Centralize validation logic for easier management and updates.
 
 ##### Custom Validator Class
-```
+
+```ts
 export class CustomValidators{
     static noSpaceAllowed (control: FormControl)  {
         if (control.value != null && control.value.indexOf(' ') != -1) {
@@ -340,8 +361,10 @@ export class CustomValidators{
     }
 }
 ```
+
 - In Component
-``` 
+
+```ts
 ngOnInit(): void {
     this.reactiveForm = new FormGroup({
       firstName: new FormControl(null, Validators.required, CustomValidators.noSpaceAllowed ), //* noSpaceAllowed is a custom validator
@@ -349,8 +372,10 @@ ngOnInit(): void {
     })
 }
 ```
+
 - In Html
-```
+
+```html
  <div class="input-box">
         <input type="text" formControlName="firstName" placeholder="First Name" />
         <small 

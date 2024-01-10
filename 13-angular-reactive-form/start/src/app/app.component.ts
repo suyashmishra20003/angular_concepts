@@ -11,6 +11,9 @@ export class AppComponent implements OnInit {
 
   title = 'template-driven-form';
   reactiveForm: FormGroup;
+  formStatus:string =''
+  formData:any = {}
+  isVisible:boolean = false
 
   ngOnInit(): void {
     this.reactiveForm = new FormGroup({
@@ -41,10 +44,43 @@ export class AppComponent implements OnInit {
       ])
     })
 
+    //* ValueChanges Event on FormControl
+    // this.reactiveForm.get('firstName').valueChanges.subscribe((value)=>{
+    //   console.log(value)
+    // })
+
+    //* ValueChanges Event on FormGroup
+    // this.reactiveForm.get('addressDetails').valueChanges.subscribe((value)=>{
+    //   console.log(value);
+    // })
+
+    //* StatusChanges Event on FormControl
+    // this.reactiveForm.get('username').statusChanges.subscribe((status)=>{
+    //   console.log(status);
+    // })
+
+    //* StatusChanges Event on FormGroup
+    // this.reactiveForm.get('addressDetails').statusChanges.subscribe((status)=>{
+    //   console.log(status);
+    // })
+
+    this.reactiveForm.statusChanges.subscribe((status)=>{
+      // console.log(status);
+      this.formStatus = status;
+    })
   }
 
   OnSubmitForm() {
-    console.log(this.reactiveForm);
+    console.log(this.reactiveForm.value);
+    this.formData = this.reactiveForm.value
+    this.isVisible = true
+    setTimeout(() => {
+      let element = document.getElementById('detail_section')
+      element.scrollIntoView({behavior:'smooth'})
+    }, 500);
+
+    //* For Resetting the form
+    this.reactiveForm.reset()
   }
 
   addSkillsHandler() {
@@ -73,5 +109,63 @@ export class AppComponent implements OnInit {
     let group = <FormArray>this.reactiveForm.get('experience')
     group.removeAt(index)
   }
+
+  generateUsername(){
+    let username = '';
+    const fName: string= this.reactiveForm.value.firstName;
+    const lName: string= this.reactiveForm.value.lastName;
+    const dob: string= this.reactiveForm.value.dob;
+    
+    if(fName.length >= 3){
+      username += fName.slice(0, 3);
+    }
+    else {
+      username += fName;
+    }
+
+    if(lName.length >= 3){
+      username += lName.slice(0, 3);
+    }
+    else {
+      username += lName;
+    }
+
+    let datetime = new Date(dob);
+    username += datetime.getFullYear();
+
+    username = username.toLowerCase();
+    
+    //* Updating value using setValue method 
+    // this.reactiveForm.setValue({
+    //   firstName: this.reactiveForm.get('firstName').value,
+    //   lastName: this.reactiveForm.get('lastName').value,
+    //   email: this.reactiveForm.get('email').value,
+    //   username: username,
+    //   dob: this.reactiveForm.get('dob').value,
+    //   gender: this.reactiveForm.get('gender').value,
+    //   addressDetails: {
+    //     street: this.reactiveForm.get('address.street').value,
+    //     country: this.reactiveForm.get('address.country').value,
+    //     city: this.reactiveForm.get('address.city').value,
+    //     region: this.reactiveForm.get('address.region').value,
+    //     postal: this.reactiveForm.get('address.postal').value,
+    //   },
+    //   skills: this.reactiveForm.get('skills').value,
+    //   experience: this.reactiveForm.get('experience').value
+    // })
+
+    // this.reactiveForm.get('username').setValue(username) //todo   Directly accessing control
+  
+
+    //* Updating value using patchValue method 
+
+    this.reactiveForm.patchValue({
+      username:username,
+      addressDetails:{
+        city:'New Delhi'
+      }
+    })
+    
+}
 
 } 

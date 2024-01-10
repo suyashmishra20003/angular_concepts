@@ -1,4 +1,4 @@
-<section class="container">
+<section [ngClass]="formStatus" class="container">
   <header>Registration Form</header>
 
   <form class="form" [formGroup]="reactiveForm" (ngSubmit)="OnSubmitForm()">
@@ -44,7 +44,9 @@
     <div class="column">
       <div class="input-box">
         <input type="text"  formControlName="username" placeholder="username" />
-        <button class="btn-gen-username" type="button">
+        <button class="btn-gen-username" 
+        [disabled]="!(reactiveForm.get('firstName').value && reactiveForm.get('lastName').value) && reactiveForm.get('dob').value " 
+        (click)="generateUsername()" type="button">
           Create a Username
         </button>
       </div>
@@ -141,32 +143,32 @@
     </div>
     <button type="button" (click)="addExperienceHandler()" class="btn-add-delete">Add Experience</button>
 
-    <button type="submit"    class="submit-btn"> Submit </button>
-    <!-- [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' " [disabled]="reactiveForm.invalid"  -->
+    <button type="submit"   [ngClass]="reactiveForm.invalid ? 'submit-btn-disabled' : 'submit-btn' "   class="submit-btn"> Submit </button>
+    <!-- [disabled]="reactiveForm.invalid"  -->
   </form>
 </section>
 
 <!--uncomment below HTML for displaying form data-->
 
-<!-- <section class="user-detail-container">
+<section  id="detail_section" *ngIf="isVisible" class="user-detail-container">
   <div class="user-details-container">
     <div class="user-avatar">
       <p>JS</p>
     </div>
     <div class="user-details">
       <div class="user-name">
-        <h2>John Smith</h2>
+        <h2>{{formData.userName}} {{formData.lastName}}</h2>
       </div>
-      <p><b>Email:</b> johnsmith@gmail.com</p>
-      <p><b>Username:</b> johnsmith86 </p>
-      <p><b>Date of birth:</b> July 21, 1989</p>
+      <p><b>Email:</b> {{formData.email}}</p>
+      <p><b>Username:</b> {{formData.username}} </p>
+      <p><b>Date of birth:</b>{{formData.dob}}</p>
       <div class="user-name">
         <h3>Address</h3>
       </div>
-      <span>India</span>.
-      <span> New Delhi</span>.
-      <span> NCR</span>.
-      <span> 234565</span>
+      <span>{{formData.addressDetails.street}}</span>.
+      <span> {{formData.addressDetails.country}}</span>.
+      <span> {{formData.addressDetails.city}} {{formData.addressDetails.region}}</span>.
+      <span> {{formData.addressDetails.postal}}</span>
     </div>
   </div>
-</section> -->
+</section>
