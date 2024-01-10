@@ -11,7 +11,7 @@ To Implement routing in angular, we use built in `@angular/router` module
 - Register the route using `RouterModule.forRoot(routeName)`
 
 - Use `<router-outlet></router-outlet>` where you want to render the view of specified route component
-```
+```ts
 const routes: Routes = [
   {path:'',component:HomeComponent}, //* By Default what page should be loaded first
   // {path:'', redirectTo:'Home', pathMatch:'full'}, // Redirects path 
@@ -85,9 +85,8 @@ The `RouterLink` is  a directive that binds the HTML element to a Route. When th
 
 **Note** : RouterLink directive is an attribute and we can also pass additional parameters to it. 
 
-```
+```html
         <a  routerLink="">HOME</a>
-
 ```
 - routerLink is the directive attribute.
 - The value assigned to routerLink is the path of the route you want to navigate to.
@@ -98,7 +97,7 @@ The `RouterLink` is  a directive that binds the HTML element to a Route. When th
 - Using `routerLinkActive` directive, we can toggle CSS classes for active route link based on the current touter state.
 - The main use case of `routerLinkActive`  directive iss to highlight which route is currently active
 
-```
+```html
         <a routerLinkActive="active"  routerLink="">HOME</a>
 
 ```
@@ -106,7 +105,7 @@ The `RouterLink` is  a directive that binds the HTML element to a Route. When th
 - When a child route is active, then all the parent routes are also marked as active. In that case, routeLinkActive directive is applied to the active child route and all its parent routes.
 - Using `RouterLinkActiveOptions` directive, we can set options for RouterLinkActiveOptions directive. One of the options we can set is the exact property which tells how to match the route path for styling the active route.
 -  `[routerLinkActiveOptions]="{exact:true}"`
-  ```
+  ```html
         <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="">HOME</a>
 
   ```
@@ -183,11 +182,11 @@ localhost:4200/Books/:routeParameter
 # How to use route parameters
 Define the parameter in your route path:
 
-```
+```ts
 { path: 'products/:id', component: ProductDetailComponent },
 ```
 Access the parameter value in your component:
-```
+```ts
 constructor(private route: ActivatedRoute) {}
 
 ngOnInit() {
@@ -201,7 +200,7 @@ In Angular routing, ActivatedRoute is a service that provides access to informat
 ow to use ActivatedRoute:
 
 Inject ActivatedRoute into your component constructor:
-```
+```ts
 constructor(private route: ActivatedRoute) {}
 ```
 Access route information:
@@ -218,7 +217,7 @@ The snapshot property contains the current value of the route. If the value of t
 
 
 
-```
+```ts
 this.activeRoute.snapshot.paramMap.get('id')
 ```
 
@@ -228,7 +227,7 @@ this.activeRoute.snapshot.paramMap.get('id')
 - Using Observables to retrieve route parameters is a more robust and efficient approach compared to the snapshot method. It offers greater flexibility and reactivity for handling dynamic route changes and data updates in your Angular application.
 
 
-```
+```ts
  this.activeRoute.paramMap.subscribe((data)=>{
       this.courseId = Number( data.get('id'))
       this.selectedCourse = this._courseService.courses.find((course)=>{
@@ -239,7 +238,7 @@ this.activeRoute.snapshot.paramMap.get('id')
 #### Unsubscribing for memory management
 - Unsubscribing ensures proper resource management.
 - Remember to unsubscribe from the Observable when the component is destroyed to avoid memory leaks. You can achieve this using the ngOnDestroy lifecycle hook:
-```
+```ts
 ngOnDestroy(): void {
   this.courseId$.unsubscribe(); // Unsubscribe from the ID Observable
 }
@@ -259,7 +258,7 @@ ngOnDestroy(): void {
 - Retrieving query parameters using an observable in Angular leverages the ActivatedRoute service's queryParamsMap property, which emits a stream of values containing the current state of the query parameters. 
 - This allows you to react dynamically to changes in the query string without needing to manually parse the URL.
 
-```
+```ts
  this.activeRoute.queryParamMap.subscribe((data)=>{
       this.searchString =  data.get('search')
 })
@@ -267,7 +266,7 @@ ngOnDestroy(): void {
 #### Unsubscribing for memory management
 - Unsubscribing ensures proper resource management.
 - Remember to unsubscribe from the Observable when the component is destroyed to avoid memory leaks. You can achieve this using the ngOnDestroy lifecycle hook:
-```
+```ts
 ngOnDestroy(): void {
   this.courseId$.unsubscribe(); // Unsubscribe from the ID Observable
 }
@@ -276,7 +275,7 @@ ngOnDestroy(): void {
 ## Using QueryParams as a link
  Use the routerLink directive with the queryParams property to dynamically build the URL based on the specified route and parameters.
 
-```
+```html
 <button [routerLink]="'/Courses'" [queryParams]="{search : searchValue }" class="search-button">Search Courses</button>
 ```
 we can add as many queryparams as we want in the queryParams object.
