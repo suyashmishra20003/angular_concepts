@@ -6,7 +6,7 @@ To generate a service use
 `ng g s service-name`. 
 
 `Syntax`
-```
+```ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class serviceName {
 
 we can  inject service by 
 
-```
+```ts
 constructor( private _serviceName:ServiceName ){
 
 }
@@ -27,7 +27,7 @@ constructor( private _serviceName:ServiceName ){
 
 OR
 
-```
+```ts
 _serviceName:any = inject(ServiceName)
 ```
 
@@ -96,7 +96,7 @@ Here's an example of injecting a service into another service in Angular:
 
 Service A:
 
-```
+```ts
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -112,7 +112,7 @@ export class ServiceA {
 ```
 Service B:
 
-```
+```ts
 import { Injectable } from '@angular/core';
 import { ServiceA } from './service-a'; // Import ServiceA
 
@@ -170,14 +170,14 @@ Here's how you can use injection tokens to achieve this:
 
 - 1. Define Injection Tokens:
 
-```
+```ts
 const DATA_SERVICE_TOKEN = new InjectionToken<DataService>('DataService');
 const LOGGER_SERVICE_TOKEN = new InjectionToken<LoggerService>('LoggerService');
 ```
 
 
 - 2. Provide Different Implementations:
-```
+```ts
 @Component({
   providers: [
     { provide: MyService, useClass: MyService },
@@ -191,7 +191,7 @@ export class MyComponent {}
 
 1. Inject Dependencies:
 
-```
+```ts
 constructor(
   @Inject(DATA_SERVICE_TOKEN) private dataService: DataService,
   @Inject(LOGGER_SERVICE_TOKEN) private loggerService: LoggerService,
