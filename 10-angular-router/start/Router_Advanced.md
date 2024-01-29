@@ -20,6 +20,7 @@ In the component that handles the detail view, you can use the ActivatedRoute se
 
 ```ts
 export class DetailComponent implements OnInit {
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -29,6 +30,7 @@ export class DetailComponent implements OnInit {
     });
   }
 }
+
 ```
 
 # Nested Routes
@@ -59,7 +61,7 @@ In Angular, nested routes refer to the practice of defining child routes within 
 - `/products/123` : Displays details for the product with ID 123.
 - `/products/123/details` : Displays details for the product with ID 123.
 - `/products/123/reviews` : Displays reviews for the product with ID 123.
-## What is a Route Guard
+# What is a Route Guard
 Angular route guards can be used to control whether the user can navigate to or away from a route based on a given condition
 
 ### Why Route Guard
@@ -72,7 +74,7 @@ Allowing the users to navigate to all parts of the application is not a good ide
 
 ### Types of Route Guard
 
-### CanActivate
+## CanActivate
 This guard decides if a route can be accessed by a user or not. This guard is useful in the circumstance where the user is not authrized to navigate to the target component.
 
 The Angular CaActivate route guard decides if a route can be activated or not. We use this route guard when we want to check on some condition, before showing the component view to user
@@ -91,6 +93,7 @@ In Module.ts
 
 {path:'Checkout', component:CheckoutComponent, canActivate:[AuthGuardService]},
 
+In AuthGuardService
 export class AuthGuardService implements CanActivate{ //! This is depricated and is used only on versions below 14 
     constructor( 
         private authService:AuthService,
@@ -106,7 +109,8 @@ export class AuthGuardService implements CanActivate{ //! This is depricated and
 
 #### Angular 15 or above
 ```ts
-// authFunc.guard.ts
+
+authFunc.guard.ts
 
 
 export const CanActivateFn = ()=>{
@@ -123,11 +127,11 @@ export const CanActivateFn = ()=>{
 ```
 
 
-### CanActivateChild
+## CanActivateChild
 This guard decides, if a user can leave a route or not. This guard is useful in case where the user might have pending changes, which was not saved.
 The Angular CanActivateChildrote guard runs before we navigate to a child route guard. This guard is very similar to CanActivate route guard and it protects a child route from unauthorized access.
 
-### CanDeactivate
+## CanDeactivate
 This guard determines whether a child route can be activated or not.
 We can use CanDeactivate route guard to decide if the user can navigate away from a route or not. This route guard is called whenever we try to navigate away from the current route
 
@@ -138,7 +142,7 @@ Guard Implementation:
 - Warn about unsaved work if they try to close the browser tab or move to a different page.
 - Prevent accidental loss of content and ensure collaboration continuity.
 
-##### Angular 14 or less
+#### Angular 14 or less
 ```ts
 // auth-guard.service.ts
 export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<ContactComponent> { //! This is depricated and is used only on versions below 14 
@@ -155,7 +159,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
 {path:'Contact' , component : ContactComponent , canDeactivate:[AuthGuardService]},
 
 ```
-##### Angular 15 or above
+#### Angular 15 or above
 ```ts
 // authFunc.guard.ts
 
@@ -169,14 +173,153 @@ export const CanDeActivateFn = (comp:any) => {
 
 
 
-### Resolve
+## Resolve
 This guard delays the activation of the route until some tasks are complete. You can use the guard to pre-fetch the data from the backend API, before activating the route.
 
 Resolve route guard in Angular can be used when we wnat to load some data before we navigate to route.
+
+```ts
+// auth-guard.service.ts
+
+export class AuthGuardService
+  implements
+    CanActivate,
+    CanActivateChild,
+    CanDeactivate<iDeactivateComponent>,
+    Resolve<Course[]>
+{
+  //! This is depricated and is used only on versions below 14
+  constructor(
+    private authService: AuthService,
+    private coursesService: CourseService,
+    private router: Router
+  ) {}}
+
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Course[] | Observable<Course[]> | Promise<Course[]> {
+    return this.coursesService.getAllcourses()
+  }
+
+```
+
+```ts
+
+// routing.module.ts
+
+   {path:'Courses' , component : CoursesComponent, resolve:{courses:AuthGuardService} }, //? Resolve routeguard interface
+
+
+```
+
+#### angular 14 or above
+
+```ts
+
+// authFunc.guard.ts
+
+export const resolveCoursesFn = ()=>{
+    const courseService  = inject(CourseService)
+    return courseService.getAllcourses()
+}
+```
+
+```ts
+// routing.module.ts
+
+  {
+    path: "Courses",
+    component: CoursesComponent,
+    resolve: { courses: resolveCoursesFn }, // resolve guard function
+  }
+```
+
+```ts
+
+In courses.component.ts
+s
+constructor(private activeRoute: ActivatedRoute) {}
+
+
+ngOnInit() {
+   this.AllCourses = this.activeRoute.snapshot.data["courses"];
+}
+```
+
+##### Key Points
+
+- Resolve guards fetch data before component activation, preventing initial loading delays.
+- Use them for data essential for component functionality.
+- Handle errors in the resolve method to prevent navigation failures.
+- Consider using loading indicators during data fetching.
+- Test Resolve guards thoroughly to ensure proper data retrieval.
 
 
 #### CanLoad
 The CanLoad Guard prevents the loading of the lazy Loaded Module. We generally use this guard when we do not want to unauthorized user to be able to even see the source code of the module.
 
+## What are Navigation Events
+In Angular, when we navigate from one route to another route, there is a sequence of navigation events that gets triggered by Angular routr. We can subscribe to these events and execute some logic if we want.
 
-### Creating an Auth Service
+- UseCase = when route changes, Show a loading icon until the component is loaded
+
+```html
+In app.component.html
+
+<div class="main-page-container">
+  <app-header></app-header>
+
+  <!-- <app-home></app-home> -->
+  <!-- <app-contact></app-contact> -->
+  <!-- <app-about></app-about> -->
+  <!-- <app-courses></app-courses> -->
+  <!-- <app-login></app-login> -->
+  
+<router-outlet></router-outlet>
+
+<div *ngIf="showLoader" class="overlay">
+  <div class="loader" ></div>
+</div>
+
+  <app-footer></app-footer>
+
+</div>
+```
+
+```ts
+
+import { Component, OnInit, inject } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  showLoader = false;
+
+  constructor( private router:Router ){}
+
+  ngOnInit(): void {
+    this.router.events.subscribe((routerEvent)=>{
+      if (routerEvent instanceof NavigationStart) {
+        this.showLoader = true;
+      }
+
+      if (routerEvent instanceof NavigationEnd) {
+        this.showLoader = false;
+        
+      }
+    })
+  }
+
+}
+
+```
+
+## Passing data through a route without using queryParam or router parameter
+
+

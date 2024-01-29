@@ -9,6 +9,10 @@
   
 <router-outlet></router-outlet>
 
+<div *ngIf="showLoader" class="overlay">
+  <div class="loader" ></div>
+</div>
+
   <app-footer></app-footer>
 
 </div>

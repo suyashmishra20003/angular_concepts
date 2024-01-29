@@ -88,12 +88,12 @@
 
     <div class="right-side">
       <div class="receipt">
-        <h2 class="receipt-heading">Complete Modern JavaScript Course</h2>
+        <h2 class="receipt-heading">{{ course.title }}</h2>
         <div>
           <table class="table">
             <tr>
-              <td>449.50 x 1 Course</td>
-              <td class="price">449.00 USD</td>
+              <td>{{course.price}} x 1 Course</td>
+              <td class="price">{{course.price}}</td>
             </tr>
             <tr>
               <td>Discount</td>
@@ -101,7 +101,7 @@
             </tr>
             <tr>
               <td>Subtotal</td>
-              <td class="price">449.00 USD</td>
+              <td class="price">{{course.price}}</td>
             </tr>
             <tr>
               <td>Tax</td>
@@ -109,7 +109,7 @@
             </tr>
             <tr class="total">
               <td>Total</td>
-              <td class="price">546.41 USD</td>
+              <td class="price">{{course.price + 47.41}}</td>
             </tr>
           </table>
         </div>

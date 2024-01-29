@@ -25,7 +25,7 @@
                     <div class="course-rating"><b>RATINGS:</b> {{ course.rating }}</div>
                 </div>
                 <div class="course-action-buttons">
-                    <button routerLink="/Courses/Checkout" class="btn">BUY NOW</button>
+                    <button routerLink="/Courses/Checkout" [state]="course" class="btn">BUY NOW</button>
                     <button [routerLink]="'/Courses/Course/' + course.id " class="btn">DETAILS</button>
                 </div>
             </div>

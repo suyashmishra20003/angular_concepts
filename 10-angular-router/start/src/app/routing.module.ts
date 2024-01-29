@@ -9,36 +9,50 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { CheckoutComponent } from "./checkout/checkout.component";
 import { AuthGuardService } from "./Services/authGuard.service";
-import { CanActivateChildFn, CanDeActivateFn } from "./authFunc.guard";
+import {
+  CanActivateChildFn,
+  CanDeActivateFn,
+  resolveCoursesFn,
+} from "./authFunc.guard";
 
 const routes: Routes = [
-    {path:'',component:HomeComponent}, //* By Default what page should be loaded first
-    // {path:'', redirectTo:'Home', pathMatch:'full'},
-    {path:'Home',component:HomeComponent},
-    {path:'About' , component : AboutComponent },
-    {path:'Contact' , component : ContactComponent , canDeactivate:[AuthGuardService]}, //?  Using canDeactivate interface
-    // {path:'Contact' , component : ContactComponent , canDeactivate:[CanDeActivateFn(new ContactComponent)]}, //? using function (angular 15 or above)
-    {path:'Courses' , component : CoursesComponent },
-    // {path:'Courses/Course/:id' , component : CourseDetailComponent }, //todo Route
-    {path:'Courses', canActivateChild:[CanActivateChildFn] ,children:[ //todo Protects all child routes
-      {path:'Course/:id', component:CourseDetailComponent, },
-      {path:'Contact', component:ContactComponent, },
-      {path:'Checkout', component:CheckoutComponent},
+  { path: "", component: HomeComponent }, //* By Default what page should be loaded first
+  // {path:'', redirectTo:'Home', pathMatch:'full'},
+  { path: "Home", component: HomeComponent },
+  { path: "About", component: AboutComponent },
+  {
+    path: "Contact",
+    component: ContactComponent,
+    canDeactivate: [AuthGuardService],
+  }, //?  Using canDeactivate interface
+  // {path:'Contact' , component : ContactComponent , canDeactivate:[CanDeActivateFn(new ContactComponent)]}, //? using function (angular 15 or above)
+  // {path:'Courses' , component : CoursesComponent, resolve:{courses:AuthGuardService} }, //? Resolve routeguard interface
+  {
+    path: "Courses",
+    component: CoursesComponent,
+    resolve: { courses: resolveCoursesFn },
+  }, //? Resolve routeguard function
+  // {path:'Courses/Course/:id' , component : CourseDetailComponent }, //todo Route
+  {
+    path: "Courses",
+    canActivateChild: [CanActivateChildFn],
+    children: [
+      //todo Protects all child routes
+      { path: "Course/:id", component: CourseDetailComponent },
+      { path: "Contact", component: ContactComponent },
+      //* Passing static data without using query params or route params
+      { path: "Checkout", component: CheckoutComponent, data: {name:'Test Course' , price : 399}  },
       // {path:'Checkout', component:CheckoutComponent, canActivate:[AuthGuardService]}, //?  Using canActivate interface
       // {path:'Checkout', component:CheckoutComponent, canActivate:[CanActivateFn]}, //?  Using canActivate function
-
-    ]},
-    {path:'Login' , component : LoginComponent },
-    {path: '**' , component:NotFoundComponent} //*  Using wildcard if no path is matched. Fallback mechanism if no path is matched
-  ]
-  
-
+    ],
+  },
+  { path: "Login", component: LoginComponent },
+  { path: "**", component: NotFoundComponent }, //*  Using wildcard if no path is matched. Fallback mechanism if no path is matched
+];
 
 @NgModule({
-    declarations: [],
-    imports: [
-        RouterModule.forRoot(routes)
-    ],
-    exports:[RouterModule]
+  declarations: [],
+  imports: [RouterModule.forRoot(routes,{enableTracing:true})],
+  exports: [RouterModule],
 })
-export class RoutingModule{}
+export class RoutingModule {}
