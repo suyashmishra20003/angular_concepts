@@ -17,11 +17,10 @@ Template-driven forms and reactive forms are two approaches to handling forms in
 - Asynchronous operations or dynamic form control manipulation is needed.
 
 # Required Module
-To work with forms in Angular, we must import FormsModule from @angular/forms in the App Module file.
+To work with forms in Angular, we must import **`FormsModule`** from @angular/forms in the App Module file.
 
 ## Example
-```
-in html
+```html
 <div>
   <h2>User Form</h2>
   <form #userForm="ngForm" (ngSubmit)="submitForm(userForm)">
@@ -35,8 +34,7 @@ in html
 
 ```
 
-```
-in Ts
+```ts
  submitForm(form: any): void {
     if (form.valid) {
       console.log('Form submitted:', form.value);
@@ -66,7 +64,7 @@ in Ts
 - A form/form_Control is considered as `dirty` if the control value is changed. For a dirty form control its dirty propertywill be true otherwise false.
 - You can use these properties along with other properties of the NgForm and NgModel directives to create more interactive and user-friendly forms in Angular.
 
-```
+```html
 <form #userForm="ngForm">
   <input name="email" ngModel required>
   <div *ngIf="userForm.controls.email.dirty && userForm.controls.email.invalid">
@@ -82,47 +80,49 @@ Angular provides a set of built-in validators that you can use in template-drive
 #### Required Validator (required):
 
 Ensures that a form control has a non-empty value.
-```
+```html
 <input name="name" ngModel required>
 ``` 
 
 #### Min and Max Length Validators (ngModel minlength and ngModel maxlength):
 Checks the length of a string against specified minimum and maximum values.
-```
+```html
 <input name="username" ngModel minlength="3" maxlength="20">
 ``` 
 
 #### Pattern Validator (ngModel pattern):
 Validates the input against a regular expression pattern.
-```
+```html
 <input name="email" ngModel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 ``` 
 
 #### Email Validator (ngModel email):
 Ensures that the input is a valid email address.
-```
+```html
  <input name="email" ngModel email>
 ```
 
 #### Min and Max Validators (ngModel min and ngModel max):
 Checks the numeric value of a control against specified minimum and maximum values.
-```
+```html
 <input name="age" ngModel type="number" min="18" max="99">
 ``` 
 
 # Two way data binding in angular forms
 Two-way data binding in Angular is a mechanism that combines property binding and event binding in a single notation using `[(ngModel)]`. It allows you to establish a synchronization between the model (component property) and the view (HTML input element, for example) in both directions. This means that changes in the model update the view, and changes in the view update the model.
 
-```
-in html 
-
+```html
 <input type="text" id="username" [(ngModel)]="username" name="username">
 
-in ts 
+```
+
+```ts
 export class AppComponent {
   user = '';
 }
 ```
+
+
 
 # What is From group ?
 - A `FreomGroup` is a collection of `FormControl`. it can also contain other FormGroup.
@@ -131,8 +131,7 @@ export class AppComponent {
 
 ##### Example
 
-```
-in html
+```html
     <div class="input-box address" ngModelGroup="addressDetails" > // FormGroup
       <label>Address</label>
       <input type="text" ngModel name="street1"  placeholder="Street address" required />
@@ -165,8 +164,7 @@ The setValue() method is used to update a FormControl, FormGroup or FormArray va
 To the setValue() method, we pass an object to update the value of a FormControl, FormGroup or FormArray. The structure of that object must match the structure of FormControl, FormGroup or FormArray which we are trying to update.
 
 
-```
-In ts
+```ts
 
 
  this.form.setValue({
@@ -198,7 +196,7 @@ In ts
 ## The patchValue() method
 The patchValue() method is used to update only a subset of the element of FormGroup or FormArray vaalue.
 It will only update the matching objects and ignores the rest
-```
+```ts
  //* Using patchValue to update single value
     this.form.form.patchValue({
       userName:username,
@@ -214,8 +212,7 @@ It will only update the matching objects and ignores the rest
 
 # Resetting Form 
 To reset a template-driven form, you can use the ngForm directive along with the #form="ngForm" template reference variable. Here's a step-by-step explanation with an example:
-```
-in ts
+```ts
 
   resetForm(form: any): void {
     form.resetForm(); // This resets the form
