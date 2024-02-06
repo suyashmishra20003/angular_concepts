@@ -6,12 +6,17 @@
             <h2>Student Management</h2>
         </div>
         <div class="admin-header-filter">
-            <select name="gender" class="filter-select">
+            <!-- [(ngModel)]="filterText" -->
+            <select name="gender" [value]="filterText" (change)="onFilterValueChanged($event)" class="filter-select">
                 <option value="All">All</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
         </div>    
+        <div style="margin: 10px 0px;">
+            Total Students :
+            {{totalStudents | async}}
+        </div>
     </div>
     <!--HEADER ENDS-->
 
@@ -81,7 +86,7 @@
             <!--INSERT NEW STUDENT ROW ENDS-->
 
             <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
-            <tr *ngFor="let std of students">
+            <tr *ngFor="let std of students | customFilterPipe:filterText ">
                 <td>{{ std.id }}</td>
 
                 <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.name }}</td>
@@ -97,12 +102,12 @@
                     </select>
                 </td>
 
-                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.dob }}</td>
+                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.dob | date: 'longDate' | uppercase}}</td>
                 <td *ngIf="isEditing && std.id === stdIdToEdit">
                     <input type="date" [value]="std.dob" #editDob>
                 </td>
 
-                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.course }}</td>
+                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.course | uppercase }}</td>
                 <td *ngIf="isEditing && std.id === stdIdToEdit">
                     <select name="course" class="select-gender-course" [value]="std.course" #editCourse>
                         <option value="MBA">MBA</option>
@@ -116,9 +121,9 @@
                     <input type="number" min="0" max="600" [value]="std.marks" #editMarks>
                 </td>
 
-                <td>{{ std.marks / totalMarks }}</td>
+                <td>{{ (std.marks ) | customPercentPipe:totalMarks:2  }}</td>
 
-                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.fee | currency: 'INR': true: '3.0-0'}}</td>
+                <td *ngIf="!isEditing || std.id !== stdIdToEdit">{{ std.fee | currency: 'INR': true: '3.2-2'}}</td> 
                 <td *ngIf="isEditing && std.id === stdIdToEdit">
                     <input type="number" min="0" [value]="std.fee" #editFee>
                 </td>

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, inject } from '@angular/core';
 import { StudentService } from '../Services/student.service';
 import { Student } from '../Models/Student';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,13 @@ export class AdminComponent implements OnInit {
 
   students: Student[];
   totalMarks: number;
-  
+
+  filterText:string = 'All'
+  totalStudents = new Observable((observer)=>{
+    setTimeout(() => {
+      observer.next(this.students.length)
+    }, 5000);
+  });
   //PROPERTIES FOR INSERTING
   @ViewChild('name') Name: ElementRef;
   @ViewChild('gender') Gender: ElementRef;
@@ -32,9 +39,16 @@ export class AdminComponent implements OnInit {
   @ViewChild('editMarks') editMarks: ElementRef;
   @ViewChild('editFee') editFee: ElementRef;
 
+
   ngOnInit(){
-    this.students = this.studentService.students;
+    this.students = this.studentService.fiterStudentByGender(this.filterText);
     this.totalMarks = this.studentService.totalMarks;
+  }
+
+  onFilterValueChanged(event:any){
+    let selectedValue = event.target.value
+    this.filterText = selectedValue
+    this.students = this.studentService.fiterStudentByGender(selectedValue)
   }
 
   OnInsertClicked(){
@@ -52,7 +66,9 @@ export class AdminComponent implements OnInit {
       this.Marks.nativeElement.value, 
       this.Fee.nativeElement.value
     );
+    this.students = this.studentService.students;
     this.isInserting = false;
+    this.students = this.studentService.fiterStudentByGender(this.filterText)
   }
 
   OnEditClicked(stdId: number){
@@ -72,5 +88,7 @@ export class AdminComponent implements OnInit {
       student.fee = this.editFee.nativeElement.value;
 
       this.isEditing = false;
+      this.students = this.studentService.fiterStudentByGender(this.filterText)
+
   }
 }
