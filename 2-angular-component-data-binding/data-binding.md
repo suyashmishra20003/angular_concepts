@@ -66,23 +66,52 @@ Data Binding is of two types :
 - One Way Data Binding
 - Two Way Data Binding
 
-### One Way Data Binding
+-------------------------------------------------
+
+## One Way Data Binding
 
 One-way data binding in Angular refers to the flow of data from the component class to the template (view) or vice versa, but not both simultaneously
 It  is further divided into two types
 
-#### Component to View
+### Component to View
 
 Data flow from component to class (TS) View template (HTML).
 
-- String Interpolation **`{{data}}`**
-- Property binding **`[property] = data`**
+#### String Interpolation
 
-#### View to Component
+It is used to just display a piece of data in HTML, such as displaying a title or a name.
+
+String interpolation will not work on Disabled, Hidden, Checked HTML attributes. For that cases we have to use Property Binding
+
+**`{{data}}`**
+
+#### Property binding
+  
+**`[property] = data`**
+
+Property Binding lets us bind a property of DOM object, for example the hidden property, to some data value. This can let us show or hide a DOM element, or manipulate the DOM in some other way.
+
+#### Difference between an Attribute and Property in HTML
+
+- An **`Attribute`** represents the initial value and does not change
+- Example: aria-label, aria-hidden etc
+- An **`Property`** represents the current value and can change
+
+#### Attribute Binding
+
+These attributes when you try to bind them using property binding they will give an error. There you need to bind them using attribute binding.
+
+```html
+<input [(ngModel)]="username" [attr.aria-hidden]="" placeholder="Enter your username">
+```
+
+### View to Component
 
 Data flow from  View template (HTML) to component class (TS).
 
 - Event Binding **`(data) = "expression"`**
+
+-------------------------------------------------
 
 ### Two Way Data Binding
 

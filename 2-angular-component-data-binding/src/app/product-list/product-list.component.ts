@@ -17,6 +17,8 @@ export class ProductListComponent {
     pImage: '/assets/images/iphone.png'
   }
 
+  listOfString: string[] = ['One', 'Two', 'Three'];
+
   getDiscountedPrice() {
     return this.product.price - (this.product.price * this.product.discount / 100)
   }
