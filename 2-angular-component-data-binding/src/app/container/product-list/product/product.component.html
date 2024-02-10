@@ -1,0 +1,19 @@
+<div   class="card">
+    <img [src]="productDetails.imageURL" alt="">
+    <div class="">
+        <p>
+            <strong>Name: {{productDetails.name}}</strong>    
+        </p>
+        <p>Price: {{productDetails.price}} </p>
+       <p>gender: {{productDetails.gender}}</p>
+       <p>category: {{productDetails.category}}</p>
+       <p>brand :{{productDetails.brand}}</p>
+       <p>
+            color:
+            <span *ngFor="let color of productDetails.color; let j = index" style="margin-left:16px" >
+                {{color}}
+            </span>
+       </p>
+       <p>{{ productDetails.is_in_inventory ? 'Available In Stock' : 'Not Available In Stock' }}</p>
+    </div>
+</div>
