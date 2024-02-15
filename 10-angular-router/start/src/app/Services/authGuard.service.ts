@@ -8,7 +8,7 @@ import { Course } from "../Models/course";
 import { CourseService } from "./course.service";
 
 export interface iDeactivateComponent {
-    canExit: ()=> boolean | Observable<boolean> | Promise<boolean>
+  canExit: () => boolean | Observable<boolean> | Promise<boolean>
 }
 
 @Injectable({
@@ -16,17 +16,17 @@ export interface iDeactivateComponent {
 })
 export class AuthGuardService
   implements
-    CanActivate,
-    CanActivateChild,
-    CanDeactivate<iDeactivateComponent>,
-    Resolve<Course[]>
+  CanActivate,
+  CanActivateChild,
+  CanDeactivate<iDeactivateComponent>,
+  Resolve<Course[]>
 {
   //! This is depricated and is used only on versions below 14
   constructor(
     private authService: AuthService,
     private coursesService: CourseService,
     private router: Router
-  ) {}
+  ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,

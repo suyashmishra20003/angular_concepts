@@ -72,7 +72,7 @@ We can create a custom angular pipe in three simple steps:
 - Decorate that class with @Pipe Decorator. There we can specify a name for the pipe.
 - Inherit PipeTransform interface and implement its transform method.
 
-## Why to bot use pipes for filtering or sorting ?
+## Why to not use pipes for filtering or sorting ?
 
 Angular team always recommends not to use pipe to filter or sort data. When we use pipe for filtering or sorting data, it can significantly impact the performance of the appliation, f not implemented carefully.
 

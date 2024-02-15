@@ -264,6 +264,16 @@ In Angular, when we navigate from one route to another route, there is a sequenc
 
 - UseCase = when route changes, Show a loading icon until the component is loaded
 
+```ts
+In app.module.ts
+
+@NgModule({
+  declarations: [],
+  imports: [RouterModule.forRoot(routes,{enableTracing:true})],
+  exports: [RouterModule],
+})
+```
+
 ```html
 In app.component.html
 

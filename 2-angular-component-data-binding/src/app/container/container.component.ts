@@ -19,26 +19,12 @@ export class ContainerComponent {
 
   listOfString: string[] = ['One', 'Two', 'Three'];
 
+  inputSerachValue:string = ''
   getDiscountedPrice() {
     return this.product.price - (this.product.price * this.product.discount / 100)
   }
 
-  onNameChange(event: any){
-    //this.name = event.target.value;
-    //console.log(event.target.value);
-  }
-
-  decrementCartValue(){
-    if(this.addToCart > 0){
-      this.addToCart--;
-    }
-    
-  }
-
-  incrementCartValue(){
-    if(this.addToCart < this.product.inStock){
-      this.addToCart++;
-    }
-    
+  searchValueHandler(event:string){
+    this.inputSerachValue = event
   }
 }

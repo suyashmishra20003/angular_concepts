@@ -1,4 +1,4 @@
-# Angular Components and Data binfing
+# Angular Components and Data binding
 
 ## CLI Command to generate a Component
 

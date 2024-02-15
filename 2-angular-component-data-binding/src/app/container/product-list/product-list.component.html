@@ -1,3 +1,11 @@
-<div class="container">
-    <app-product *ngFor="let product of newArray ; let i= index" [productDetails]="product" ></app-product>
+<app-filter 
+    (selectedFilterRadioBtnChanged)="onFilterChanged($event)" 
+    [all]="products.length" [inStock]="inStock"
+    [outOfStock]="products.length - inStock">
+</app-filter>
+<div   class="container">
+    <ng-container *ngFor="let product of newArray ; let i= index">
+        <app-product *ngIf=" newSearchValue === '' || product.name.toLowerCase().includes(newSearchValue)"  [productDetails]="product"></app-product>
+    </ng-container>
 </div>
+<!-- *ngIf=" newSearchValue === '' || product.name.toLowerCase().includes(newSearchValue)" -->
