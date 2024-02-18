@@ -107,3 +107,29 @@ newItemEvent is assigned a new EventEmitter instance.
 - When the event is received, the handleNewItem() function is called with the emitted data.
 
 By using @Output, you can create interactive and dynamic Angular applications where child components can inform and update parent components based on user interactions or internal changes.
+
+## Template Reference Variable (@ViewChild)
+
+Template reference variables, denoted by `@ViewChild`, are a powerful tool in Angular for accessing specific elements within your component's template. They allow you to directly interact with DOM elements, components, or directives and manipulate their behavior after the view has been initialized.
+
+### Declaring the Variable
+
+- Use the @ViewChild decorator above a property in your component class.
+- Specify the type of element you want to access (e.g., ElementRef, Directive, or another component).
+- Give the variable a name (e.g., @ViewChild('myElement') viewChild: ElementRef).
+
+### Accessing the Element:
+
+- After the view has been initialized (usually in ngAfterViewInit), you can access the element through the property you declared.
+- For example, to access the element referred to by myElement, you would use this.viewChild.nativeElement.
+
+```ts
+<input type="text" #myInput>
+
+@ViewChild('myInput') inputRef: ElementRef;
+
+ngAfterViewInit() {
+  this.inputRef.nativeElement.focus();
+}
+```
+

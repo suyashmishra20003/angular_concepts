@@ -568,5 +568,11 @@ export class ProductListComponent implements OnInit {
   }
  
 
+  doSomething(){
+    //* this function is accesed in product component by using @ViewChid Component
+    console.log(`I am accessed from product-list component in product component`);
+    
+  }
+
 
 }

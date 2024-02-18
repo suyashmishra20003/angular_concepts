@@ -5,7 +5,7 @@
 </app-filter>
 <div   class="container">
     <ng-container *ngFor="let product of newArray ; let i= index">
-        <app-product *ngIf=" newSearchValue === '' || product.name.toLowerCase().includes(newSearchValue)"  [productDetails]="product"></app-product>
+        <app-product *ngIf=" newSearchValue === '' || product.name.toLowerCase().includes(newSearchValue)" #productRefernceVar [productDetails]="product"></app-product>
     </ng-container>
 </div>
 <!-- *ngIf=" newSearchValue === '' || product.name.toLowerCase().includes(newSearchValue)" -->
