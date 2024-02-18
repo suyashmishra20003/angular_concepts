@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-view-children": {
+    "angular-ng-container": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-view-children",
+            "outputPath": "dist/angular-ng-container",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-view-children:build:production"
+              "browserTarget": "angular-ng-container:build:production"
             },
             "development": {
-              "browserTarget": "angular-view-children:build:development"
+              "browserTarget": "angular-ng-container:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-view-children:build"
+            "browserTarget": "angular-ng-container:build"
           }
         },
         "test": {
@@ -94,8 +94,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "36a8a466-9af8-4237-ad90-e5539d3813f0"
   }
 }
