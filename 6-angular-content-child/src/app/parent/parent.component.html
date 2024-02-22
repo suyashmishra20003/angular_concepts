@@ -1,3 +1,5 @@
+<ng-content select=".above" ></ng-content>
+
 <div>
     <app-child>
         <h3>Some Heading</h3>
@@ -16,10 +18,9 @@
             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
         </p>
 
-        <app-test [name]="'Merry Jane'"></app-test>
-        <app-test [name]="'Mark Vought'"></app-test>
-        <app-test [name]="'John Smith'"></app-test>
-        <app-test [name]="'Sarah Williams'"></app-test>
+
     </app-child>
-    <!-- <button (click)="showParaValue()">Show Value</button> -->
+    <button (click)="showParaValue()">Show Value</button>
 </div>
+<ng-content select=".below" ></ng-content>
+<ng-content  ></ng-content>

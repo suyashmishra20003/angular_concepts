@@ -1,1 +1,13 @@
-<app-parent></app-parent>
+<app-parent>
+    <h1 class="above">Shikhar Mishra Above</h1>
+    <h1 class="below">Suyash Mishra below</h1>
+    <p #paragraph >This is for @ContentChild</p>
+    <p #paragraph >This is para 1</p>
+    <p #paragraph >This is para 2</p>
+    <p #paragraph >This is para 3</p>
+
+    <app-test [name]="'Merry Jane'"></app-test>
+    <app-test [name]="'Mark Vought'"></app-test>
+    <app-test [name]="'John Smith'"></app-test>
+    <app-test [name]="'Sarah Williams'"></app-test>
+</app-parent>
