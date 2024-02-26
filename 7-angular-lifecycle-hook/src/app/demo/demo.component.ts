@@ -39,35 +39,39 @@ AfterViewInit, AfterViewChecked, OnDestroy{
   ngOnInit(){
     console.log('ngOnInit Hook called');
     //console.log(this.tempPara.nativeElement.innerHTML);
+    console.log('In ngOnInit', this.tempPara);
+
   }
 
   ngDoCheck(){
-    // console.log('ngDoCheck Hook called');
+    console.log('ngDoCheck Hook called');
     //console.log('In ngDoCheck', this.paraContent)
   }
 
   ngAfterContentInit(){
-    // console.log('ngAfterContentInit Hook called');
+    console.log('ngAfterContentInit Hook called');
     //console.log('In ngAfterContentInit', this.paraContent.nativeElement)
   }
 
   ngAfterContentChecked(){
-    // console.log('ngAfterContentChecked Hook called');
+    console.log('ngAfterContentChecked Hook called');
     //console.log('In ngAfterContentChecked', this.tempPara);
   }
 
   ngAfterViewInit(){
-    // console.log('ngAfterViewInit Hook called');
-    //console.log('In ngAfterViewInit', this.tempPara);
+    console.log('ngAfterViewInit Hook called');
+    console.log('In ngAfterViewInit', this.tempPara);
   }
 
   ngAfterViewChecked(){
-    // console.log('ngAfterViewChecked Hook called');
+    console.log('ngAfterViewChecked Hook called');
     //console.log(this.tempPara.nativeElement.textContent);
+    console.log('---------------------------------------------');
+    
   }
 
   ngOnDestroy(){
-    // console.log('ngOnDestroy Hook called');
+    console.log('ngOnDestroy Hook called');
   }
 
   
