@@ -1,0 +1,52 @@
+<div>
+  <h1 *ngFor="let name of names; let i = index">
+    <span [setBackground]="{backColor:'red', textColor:'yellow'}">{{name}}</span>
+  </h1>
+</div>
+
+<!-- <button PillButton >Click Me</button> -->
+<button [title]="myTitle" (click)="isBtnDiasbled = !isBtnDiasbled" PillButton>Click Me</button>
+<button [title]="myTitle" CustomDisable [disableProperty]="isBtnDiasbled">Disable Me</button>
+
+<h2>Custom Class and Style Directive</h2>
+<div appClass [display]="{'app-container':true,'appHighlight' : true , 'appFont':5>3}">
+  <p>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum neque a adipisci est saepe doloribus
+    asperiores magni, quia sapiente temporibus doloremque nulla similique reiciendis ex, provident libero recusandae
+    aliquam modi at dolore ut. Libero ratione aut, reiciendis, accusamus explicabo alias commodi, aperiam est ea 
+  </p>
+</div>
+<div *ngIf="isifBlock else elseBlock" class="app-container">
+  <p appStyle  [elementStyle]="{'color':'white' , 'font-weight':'bold' , 'padding':'8px' , 'backgroundColor': 10 < 7 ? 'green' : 'tomato' , 'border':'10px solid black'   }"  >
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum neque a adipisci est saepe doloribus
+    asperiores magni, quia sapiente temporibus doloremque nulla similique reiciendis ex, provident libero recusandae
+    aliquam modi at dolore ut. Libero ratione aut, reiciendis, accusamus explicabo alias commodi, aperiam est ea 
+  </p>
+</div>
+
+
+<ng-template #elseBlock>
+  <h1>Else Block is here !!!!</h1>
+</ng-template>
+
+
+<!-- * Using Custom Structural Directive -->
+<p *CustomIf="10 > 7"  >
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem reprehenderit, autem incidunt labore explicabo ipsum
+  libero impedit dignissimos qui iusto id voluptatem magni unde placeat veniam. Voluptatum error impedit modi,
+  necessitatibus perspiciatis est similique aperiam quo maiores soluta ipsam dolore ipsum dolorem eveniet repudiandae
+  itaque quae corporis et voluptates, reiciendis delectus odit magnam eius nesciunt. Culpa unde temporibus incidunt
+  aperiam fugit. Aliquid veritatis, doloribus neque maiores, pariatur, tempora quo provident ea unde numquam modi!
+  Corrupti, voluptatibus? Eos, dicta eaque, beatae dolorum ex quaerat alias mollitia dolor ad quod ratione possimus
+  voluptatem labore nam minus reprehenderit illo, et nesciunt enim! Laudantium?
+</p>
+
+<!--* Using *ngSwitch -->
+
+<div [ngSwitch]="tab" >
+   <h1 *ngSwitchCase="'son'" >Son</h1>
+   <h1 *ngSwitchCase="'brother'" >Brother</h1>
+   <h1 *ngSwitchCase="'father'" >Father</h1>
+   <h1 *ngSwitchCase="'mother'" >Mother</h1>
+   <h1 *ngSwitchDefault >We are Family</h1>
+</div>
