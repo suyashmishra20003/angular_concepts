@@ -61,7 +61,7 @@ To work with forms in Angular, we must import **`FormsModule`** from @angular/fo
 
 ## Touched and Dirty Form property
 - A form/form_Control is considered as `touched` if any of its control has been `focused`. For a touched form/form_Control its `touched` property will be `true` and its `untouched` property will be `false`.
-- A form/form_Control is considered as `dirty` if the control value is changed. For a dirty form control its dirty propertywill be true otherwise false.
+- A form/form_Control is considered as `dirty` if the control value is changed. For a dirty form control its dirty property will be true otherwise false.
 - You can use these properties along with other properties of the NgForm and NgModel directives to create more interactive and user-friendly forms in Angular.
 
 ```html

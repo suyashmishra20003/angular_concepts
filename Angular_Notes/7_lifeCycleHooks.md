@@ -1,6 +1,6 @@
 # Angular Life Cycle Hooks
 
-`The Angular life cycle hooks are the methods that angular invokes on a directive or a component, as  it creates, changes and destroys them.`
+`Angular lifecycle hooks are methods that allow you to tap into key events in the lifecycle of a component or directive. They provide visibility into various stages of component creation, updating, and destruction.`
 
 - When the Angular application starts, it first creates and renders the
 root component.
@@ -48,7 +48,7 @@ In Angular, the ngOnChanges lifecycle hook allows you to respond to changes in a
 
 `ngOnInit: The Backbone of Initialization in Angular Components`
 
-In Angular, the ngOnInit lifecycle hook plays a crucial role in component initialization. **It's invoked after the component's properties are initialized and before the first change detection cycle.** This makes it the ideal place to perform various setup tasks that require access to data or the DOM. It runs only once i.e. during the first change detection cycle. After that, if the input changes, this hook does not gets called.
+In Angular, the ngOnInit lifecycle hook plays a crucial role in component initialization. ***It's invoked after the component's properties are initialized and before the first change detection cycle.*** This makes it the ideal place to perform various setup tasks that require access to data or the DOM. It runs only once i.e. during the first change detection cycle. After that, if the input changes, this hook does not gets called.
 
 ### Key Points
 
@@ -96,14 +96,14 @@ In Angular, ngAfterContentInit is a lifecycle hook that gets invoked once after 
 - Angular also updates the properties decorated with @ViewChild and @ViewChildren decorator before raising this hook.
 - This hook is called during the first changedetection cycle, when Angular initializes the view for the first time.
 - By the time this hook gets's called for a component, all the lifecycle hook methods of child components and directives are completely processed and child components are completely ready.
-- **`The ngAfterViewInit hook is also component only hook. It cannot be called in directives.`**
+- ***`The ngAfterViewInit hook is also component only hook. It cannot be called in directives.`***
 
 ## `ngAfterViewChecked`
 
 - Angular fires ngAfterViewChecked hook after it checks and updates the components View temlate and all its child components view templates.
 - This hook is called during the first change detection cycle, after ngAfterViewInit hook has executed. And after that during every change detection cycle.
 - Angular also upadates the properties decorated with @VieChild and @ViewChildren decortor before raising this hook.
-- **`The ngAfterViewChecked hook is a component only hook. It cannot be called in directives.`**
+- ***`The ngAfterViewChecked hook is a component only hook. It cannot be called in directives.`***
 
 ## `ngOnDestroy`
 

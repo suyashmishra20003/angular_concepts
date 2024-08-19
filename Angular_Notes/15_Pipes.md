@@ -1,6 +1,6 @@
 # What is a Pipe ?
 
-Pipes in Angular are used to transform or format data befire displaying in the view. Angular pipe takes data as an input and it formats or transforms that data before dsiplaying it in the template.
+Pipes in Angular are used to transform or format data before displaying in the view. Angular pipe takes data as an input and it formats or transforms that data before dsiplaying it in the template.
 
 In Angular, pipes are special functions that transform data before displaying it in templates.
 

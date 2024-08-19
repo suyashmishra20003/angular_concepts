@@ -2,7 +2,9 @@
 
 ## CLI Command to generate a Component
 
-**`ng g c component-name`**
+```shell
+ng g c component-name
+```
 
 ## Types of Component Selectors
 
@@ -83,19 +85,19 @@ It is used to just display a piece of data in HTML, such as displaying a title o
 
 String interpolation will not work on Disabled, Hidden, Checked HTML attributes. For that cases we have to use Property Binding
 
-**`{{data}}`**
+***`{{data}}`***
 
 #### Property binding
   
-**`[property] = data`**
+***`[property] = data`***
 
 Property Binding lets us bind a property of DOM object, for example the hidden property, to some data value. This can let us show or hide a DOM element, or manipulate the DOM in some other way.
 
 #### Difference between an Attribute and Property in HTML
 
-- An **`Attribute`** represents the initial value and does not change
+- An ***`Attribute`*** represents the initial value and does not change
 - Example: aria-label, aria-hidden etc
-- An **`Property`** represents the current value and can change
+- An ***`Property`*** represents the current value and can change
 
 #### Attribute Binding
 
@@ -109,7 +111,7 @@ These attributes when you try to bind them using property binding they will give
 
 Data flow from  View template (HTML) to component class (TS).
 
-- Event Binding **`(data) = "expression"`**
+- Event Binding ***`(data) = "expression"`***
 
 -------------------------------------------------
 

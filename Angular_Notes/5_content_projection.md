@@ -45,9 +45,9 @@ Example (Card with Header and Body):
 
 ## Real-World Scenarios
 
-- **Building reusable UI components:** Create generic components like modal dialogs, tabs, or accordions that accept customizable content through projection.
-- **Dynamic content sections:** Allow users to define specific sections of content within your application using custom components.
-- **Component composition:** Combine smaller, focused components for cleaner and more maintainable code.
+- ***Building reusable UI components:*** Create generic components like modal dialogs, tabs, or accordions that accept customizable content through projection.
+- ***Dynamic content sections:*** Allow users to define specific sections of content within your application using custom components.
+- ***Component composition:*** Combine smaller, focused components for cleaner and more maintainable code.
 
 ### Additional Tips
 

@@ -1,0 +1,29 @@
+The communication of data between template and its ts file (component class) is facilitated via data binding or property binding. It can be done via 3 ways
+html to ts
+ts to html
+2 way binding
+1) html to ts
+angular can fire js event usingevent binding
+<div (click)="addClick()">Click</div>
+
+2) ts to html
+- via Interpolation
+- via property binding attribute binding
+# interpolation(banana binding)
+html 
+
+<div>{{title}}</div>
+ts 
+export class NameComponent {
+title:string  = 'Angular'
+}
+
+# property binding(banana binding)
+html 
+
+<div [disabled]="isDiasbled" >{{title}}</div>
+ts 
+export class NameComponent {
+title:string  = 'Angular';
+isDiasbled:boolean  = true
+}

@@ -32,7 +32,7 @@ The main difference between @ContentChild and @ViewChild decorators in Angular l
 
 ### @ViewChild
 
-- Looks for elements or directives within the component's own template.
+- @ViewChild can access elements or components declared directly within its own template.
 - This includes elements directly defined in the template, elements nested within other components, and directives applied to those elements.
 
 ### @ContentChild
@@ -42,11 +42,11 @@ The main difference between @ContentChild and @ViewChild decorators in Angular l
 
 | Feature | @ViewChild | @ContentChild |
 |---|---|---|
-| **Scope** | Template of the component | Projected content from parent |
-| **Type of elements** | Elements, directives, components within the template | Elements, directives projected using `<ng-content>` |
-| **Selectors** | Class, ID, variable name, directive type | Class, ID, variable name, directive type |
-| **Access time** | After view initialization | After view initialization |
-| **Examples** | Getting a reference to a child component, accessing a specific element within the template | Accessing a title element projected from the parent |
+| ***Scope*** | Template of the component | Projected content from parent |
+| ***Type of elements*** | Elements, directives, components within the template | Elements, directives projected using `<ng-content>` |
+| ***Selectors*** | Class, ID, variable name, directive type | Class, ID, variable name, directive type |
+| ***Access time*** | After view initialization | After view initialization |
+| ***Examples*** | Getting a reference to a child component, accessing a specific element within the template | Accessing a title element projected from the parent |
 
 -------
 

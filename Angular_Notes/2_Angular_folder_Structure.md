@@ -66,55 +66,55 @@ Angular's change detection mechanism is highly optimized and performs efficientl
   |-- tslint.json
 ```
 
-- **e2e/:** This folder contains end-to-end tests for your application. These tests are written using tools like Protractor and are used to simulate user interactions with your application.
+- ***e2e/:*** This folder contains end-to-end tests for your application. These tests are written using tools like Protractor and are used to simulate user interactions with your application.
 
-- **node_modules/:** This folder contains all the dependencies of your project. It's generated and managed by npm (Node Package Manager) and contains the packages required for your project to run.
+- ***node_modules/:*** This folder contains all the dependencies of your project. It's generated and managed by npm (Node Package Manager) and contains the packages required for your project to run.
 
-- **src/:** This folder contains the source code of your Angular application.
-  - **app/:** This subfolder contains the components, modules, services, and other application-specific files.
-    - **app.component.css:** The CSS file for the root component of your application.
-    - **app.component.html:** The HTML template file for the root component of your application.
-    - **app.component.spec.ts:** The unit test file for the root component.
-    - **app.component.ts:** The TypeScript file for the root component.
-    - **app.module.ts:** The main module file of your Angular application, where you declare and import all the components, directives, and services used in your application.
+- ***src/:*** This folder contains the source code of your Angular application.
+  - ***app/:*** This subfolder contains the components, modules, services, and other application-specific files.
+    - ***app.component.css:*** The CSS file for the root component of your application.
+    - ***app.component.html:*** The HTML template file for the root component of your application.
+    - ***app.component.spec.ts:*** The unit test file for the root component.
+    - ***app.component.ts:*** The TypeScript file for the root component.
+    - ***app.module.ts:*** The main module file of your Angular application, where you declare and import all the components, directives, and services used in your application.
 
-- **assets/:** This folder contains static assets such as images, fonts, or other files that are used by your application.
+- ***assets/:*** This folder contains static assets such as images, fonts, or other files that are used by your application.
 
-- **environments/:** This folder contains environment-specific configuration files. By default, it includes files for environment.ts and environment.prod.ts, which are used for development and production environments, respectively.
+- ***environments/:*** This folder contains environment-specific configuration files. By default, it includes files for environment.ts and environment.prod.ts, which are used for development and production environments, respectively.
 
-- **favicon.ico:** The favicon file for your application.
+- ***favicon.ico:*** The favicon file for your application.
 
-- **index.html:** The main HTML file that serves as the entry point for your application.
+- ***index.html:*** The main HTML file that serves as the entry point for your application.
 
-- **main.ts:** The main TypeScript file that bootstraps your Angular application and initializes the Angular platform.
+- ***main.ts:*** The main TypeScript file that bootstraps your Angular application and initializes the Angular platform.
 
-- **polyfills.ts:** This file includes polyfills required by Angular and the browser to support features that aren't natively supported by all browsers.
+- ***polyfills.ts:*** This file includes polyfills required by Angular and the browser to support features that aren't natively supported by all browsers.
 
-- **styles.css:** The global CSS file for your application.
+- ***styles.css:*** The global CSS file for your application.
 
-- **test.ts:** The main entry point for running tests.
+- ***test.ts:*** The main entry point for running tests.
 
-- **.editorconfig:** This file contains coding style configurations that can be used by various text editors and IDEs to ensure consistent code formatting.
+- ***.editorconfig:*** This file contains coding style configurations that can be used by various text editors and IDEs to ensure consistent code formatting.
 
-- **.gitignore:** This file specifies which files and directories should be ignored by Git version control.
+- ***.gitignore:*** This file specifies which files and directories should be ignored by Git version control.
 
-- **angular.json:** This file contains configuration settings for the Angular CLI, such as build options, project targets, and global configurations.
+- ***angular.json:*** This file contains configuration settings for the Angular CLI, such as build options, project targets, and global configurations.
 
-- **browserslist:** This file specifies a list of supported browsers for your project, which is used by various tools like Autoprefixer.
+- ***browserslist:*** This file specifies a list of supported browsers for your project, which is used by various tools like Autoprefixer.
 
-- **karma.conf.js:** The configuration file for Karma, the test runner used for unit testing in Angular applications.
+- ***karma.conf.js:*** The configuration file for Karma, the test runner used for unit testing in Angular applications.
 
-- **package.json:** This file contains metadata and configuration settings for your project, including the list of dependencies and scripts for building, testing, and running the project.
+- ***package.json:*** This file contains metadata and configuration settings for your project, including the list of dependencies and scripts for building, testing, and running the project.
 
-- **README.md:** The README file for your project, which typically contains information about the project, instructions for installation and usage, and other relevant details.
+- ***README.md:*** The README file for your project, which typically contains information about the project, instructions for installation and usage, and other relevant details.
 
-- **tsconfig.app.json:** The TypeScript configuration file for the Angular application.
+- ***tsconfig.app.json:*** The TypeScript configuration file for the Angular application.
 
-- **tsconfig.json:** The base TypeScript configuration file for your project.
+- ***tsconfig.json:*** The base TypeScript configuration file for your project.
 
-- **tsconfig.spec.json:** The TypeScript configuration file used for compiling unit tests.
+- ***tsconfig.spec.json:*** The TypeScript configuration file used for compiling unit tests.
 
-- **tslint.json:** The configuration file for TSLint, a static analysis tool for TypeScript code.
+- ***tslint.json:*** The configuration file for TSLint, a static analysis tool for TypeScript code.
 
 ## Bootstraping angular app
 
@@ -146,7 +146,7 @@ Bootstrapping an Angular application refers to the process of initializing and s
           },
   ```
 
-- In main.ts file it calls **`platformBrowserDynamic().bootstrapModule(AppModule)`**. This function is responsible for initializing the Angular application and starting the bootstrapping process. This fuctions loads the **`AppModule`**.
+- In main.ts file it calls ***`platformBrowserDynamic().bootstrapModule(AppModule)`***. This function is responsible for initializing the Angular application and starting the bootstrapping process. This fuctions loads the ***`AppModule`***.
   
 - After main.ts angular goes to app.module.ts which has below code -
 
