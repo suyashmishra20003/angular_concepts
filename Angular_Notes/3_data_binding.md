@@ -56,7 +56,7 @@ This is the most common type of selector in Angular. It matches the name of the 
 ```
 
 ```html
-<<div class="app-header"></div>
+<div class="app-header"></div>
 ```
 
 ## What is Data Binding in Angular

@@ -116,22 +116,80 @@ onHostElementClick(event: MouseEvent) {
 
 ## `HostBinding`
 
-- Purpose: The @HostBinding decorator allows you to directly connect properties of your component class to properties of the host element (where your component is placed in the template).
+- @HostBinding in Angular is a decorator that allows you to bind a property of a directive/component class to a property of the host element (the DOM element on which the directive or component is applied).
 
-- Changes the DOM: It enables you to dynamically change attributes, classes, and styles of the host element based on your component's internal state.
+```ts
+@HostBinding('property') propertyName: type = initialValue;
 
-- One-way or Two-way: You can use @HostBinding for one-way data flow (component property -> element property) or for two-way binding with the attribute.
+@HostBinding('class.active') isActive = false; 
+```
 
-- Use Cases:
+### When to Use @HostBinding
+- When you need to dynamically change the appearance or behavior of a host element based on the state of a directive or component.
+- When you want to encapsulate behavior within a directive and avoid manipulating the DOM directly within the template.
+- When you need to keep the logic for managing host element properties clean and within the directive/component class.
 
-  - Dynamically applying CSS classes for styling.
-  - Controlling element visibility with the 'hidden' attribute.
-  - Setting inline styles.
-
+### Best Practices
+- Use @HostBinding to manage DOM-related properties that are directly tied to the directive or component's behavior.
+- Combine @HostBinding with @HostListener (which listens to host element events) to create powerful directives that both react to user input and update the DOM.
 - Example:
 
 ```ts
-@HostBinding('class.active') isActive = false; 
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
+
+@Directive({
+  selector: '[btnStyleDirectiive]',
+  standalone: true,
+})
+export class BtnStyleDirectiive implements OnInit {
+  @HostBinding('textContent') label: string = '';
+  @HostBinding('style.border') border: string = '';
+
+  @Input('btnLabel') set btnLabel(label: string) {
+    this.label = label;
+  }
+  @Input('btnBorder') set btnBorder(color: string) {
+    this.border = `5px solid ${color}`;
+  }
+
+  constructor(public elRef: ElementRef) {}
+
+  ngOnInit(): void {
+    let btn = this.elRef.nativeElement;
+    btn.style.backgroundColor = 'black';
+    btn.style.color = 'white';
+    btn.style.padding = '8px 12px';
+    btn.style.border = 'none';
+    btn.style.fontWeigth = '700';
+  }
+
+  @HostListener('mouseover') onMouseHover() {
+    let btn = this.elRef.nativeElement.style;
+    btn = 'gray';
+  }
+
+  @HostListener('mouseleave') onMouseLeave() {
+    let btn = this.elRef.nativeElement.style;
+    btn = 'black';
+  }
+}
+
+```
+
+```html
+<<button
+  btnStyleDirectiive
+  [btnLabel]="'Post Data'"
+  [btnBorder]="'red'"
+  type="button"
+></button>
 ```
 
 Here, the CSS class "active" will be added to the host element whenever the isActive property is set to true.
@@ -243,3 +301,15 @@ The *ngSwitch directive is a structural directive that lets you conditionally di
 
 - You need to conditionally display one of several mutually exclusive elements in your template.
 - Using a chain of *ngIf directives would result in less readable or repetitive code.
+
+## Hooks for directives
+Directives share some of the lifecycle hooks that components use, but they do not have view-related hooks like ngAfterViewInit, since they don't manage templates or child views.
+
+### Hooks Specific to Components Only:
+ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked are related to content projection and view initialization. Since directives don't have templates or projected content, these hooks don't apply to them.
+
+### Directives lifecycle hooks include:
+- ngOnChanges (when inputs change),
+- ngOnInit (called after directive initialization),
+- ngDoCheck (for custom change detection),
+- ngOnDestroy (for cleanup).
