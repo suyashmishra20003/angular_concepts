@@ -221,3 +221,7 @@ export class AppModule { }
 ```
 
 - Now whereever `app-root` is used a html tag the view template (app.component.html) is rendered.
+```ts
+The Flow: angular.json → main.ts → app.config.ts → app.component.ts
+
+```
